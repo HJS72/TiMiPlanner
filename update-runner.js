@@ -86,13 +86,36 @@ function copyDirectory(sourceDir, targetDir, relativeRoot = "") {
 
     const targetPath = path.join(targetDir, entry.name);
     if (entry.isDirectory()) {
-      fs.mkdirSync(targetPath, { recursive: true });
+      try {
+        fs.mkdirSync(targetPath, { recursive: true });
+      } catch (error) {
+        throw new Error(
+          `Cannot create directory "${targetPath}": ${error.message}. ` +
+          `Please ensure the application has write permissions to ${targetDir}`
+        );
+      }
       copyDirectory(sourcePath, targetPath, relativePath);
       continue;
     }
 
-    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-    fs.copyFileSync(sourcePath, targetPath);
+    try {
+      fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    } catch (error) {
+      throw new Error(
+        `Cannot create directory "${path.dirname(targetPath)}": ${error.message}. ` +
+        `Please ensure the application has write permissions to ${targetDir}`
+      );
+    }
+
+    try {
+      fs.copyFileSync(sourcePath, targetPath);
+    } catch (error) {
+      throw new Error(
+        `Cannot copy file "${relativePath}": ${error.message}. ` +
+        `Please ensure the application has write permissions to ${targetDir}. ` +
+        `The update requires write access to the application directory.`
+      );
+    }
   }
 }
 
