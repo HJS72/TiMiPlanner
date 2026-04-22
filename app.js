@@ -131,6 +131,7 @@ const translations = {
     "task.count": "Quantity",
     "task.points": "Points",
     "task.pointsShort": "pts",
+    "task.each": "each",
     "task.assignedTo": "Assigned to",
     "task.allChildren": "All children",
     "task.scheduleDays": "Weekdays",
@@ -230,6 +231,40 @@ const translations = {
     "settings.connectionOk": "Working",
     "settings.connectionError": "Not working",
     "settings.connectionUnknown": "Not configured",
+    "settings.updateTitle": "Application update",
+    "settings.updateHelp": "Configure the GitHub repository once, then check Releases or upload a repository ZIP. The updater keeps the database files in place and reinstalls npm packages.",
+    "settings.updateRepository": "GitHub repository",
+    "settings.updateRestart": "Restart command",
+    "settings.updateRestartHelp": "Optional. Example: sudo systemctl restart timiplanner. Leave blank to let TiMiPlanner restart itself.",
+    "settings.updatePreserve": "Preserve files",
+    "settings.updatePreserveHelp": "Comma-separated paths that must not be overwritten during the update.",
+    "settings.updateSave": "Save update settings",
+    "settings.updateSaveOk": "Update settings saved.",
+    "settings.updateCheck": "Check GitHub release",
+    "settings.updateInstallRelease": "Install latest release",
+    "settings.updateUploadZip": "Upload repository ZIP",
+    "settings.updateUploadHint": "Upload a ZIP archive downloaded from the repository or a release asset.",
+    "settings.updateCurrentVersion": "Installed version",
+    "settings.updateLatestVersion": "Latest release",
+    "settings.updateReleaseName": "Release",
+    "settings.updatePublishedAt": "Published",
+    "settings.updateStatus": "Updater status",
+    "settings.updateStatusIdle": "Idle",
+    "settings.updateStatusRunning": "Running",
+    "settings.updateStatusCompleted": "Completed",
+    "settings.updateStatusFailed": "Failed",
+    "settings.updateMessage": "Message",
+    "settings.updateError": "Error",
+    "settings.updateLastChecked": "Last checked",
+    "settings.updateNoRelease": "No release info loaded yet.",
+    "settings.updateAvailable": "A newer release is available.",
+    "settings.updateNotAvailable": "Installed version is already up to date.",
+    "settings.updateOpenRelease": "Open release page",
+    "settings.updateInstallStarted": "Release download started. The app will restart automatically after installation.",
+    "settings.updateUploadStarted": "ZIP upload accepted. The app will restart automatically after installation.",
+    "settings.updateRunning": "Update is running. Status refresh will continue automatically.",
+    "settings.updateSource": "Source",
+    "settings.updateNone": "Not available",
 
     "footer.help": "Tip: Use the settings page to import another calendar.",
     "footer.version": "Version {{version}}",
@@ -370,6 +405,7 @@ const translations = {
     "task.count": "Anzahl",
     "task.points": "Punkte",
     "task.pointsShort": "Pkt",
+    "task.each": "je",
     "task.assignedTo": "Zugewiesen an",
     "task.allChildren": "Alle Kinder",
     "task.scheduleDays": "Wochentage",
@@ -469,6 +505,40 @@ const translations = {
     "settings.connectionOk": "Funktioniert",
     "settings.connectionError": "Fehler",
     "settings.connectionUnknown": "Nicht konfiguriert",
+    "settings.updateTitle": "Anwendung aktualisieren",
+    "settings.updateHelp": "GitHub-Repository einmal konfigurieren, dann Releases prüfen oder eine Repository-ZIP hochladen. Der Updater behält die Datenbankdateien und installiert npm-Pakete neu.",
+    "settings.updateRepository": "GitHub-Repository",
+    "settings.updateRestart": "Neustart-Befehl",
+    "settings.updateRestartHelp": "Optional. Beispiel: sudo systemctl restart timiplanner. Leer lassen, damit TiMiPlanner sich selbst neu startet.",
+    "settings.updatePreserve": "Zu erhaltende Dateien",
+    "settings.updatePreserveHelp": "Kommagetrennte Pfade, die beim Update nicht überschrieben werden dürfen.",
+    "settings.updateSave": "Update-Einstellungen speichern",
+    "settings.updateSaveOk": "Update-Einstellungen gespeichert.",
+    "settings.updateCheck": "GitHub-Release prüfen",
+    "settings.updateInstallRelease": "Letztes Release installieren",
+    "settings.updateUploadZip": "Repository-ZIP hochladen",
+    "settings.updateUploadHint": "ZIP-Archiv aus dem Repository oder aus einem Release-Asset hochladen.",
+    "settings.updateCurrentVersion": "Installierte Version",
+    "settings.updateLatestVersion": "Letztes Release",
+    "settings.updateReleaseName": "Release",
+    "settings.updatePublishedAt": "Veröffentlicht",
+    "settings.updateStatus": "Updater-Status",
+    "settings.updateStatusIdle": "Bereit",
+    "settings.updateStatusRunning": "Läuft",
+    "settings.updateStatusCompleted": "Abgeschlossen",
+    "settings.updateStatusFailed": "Fehlgeschlagen",
+    "settings.updateMessage": "Meldung",
+    "settings.updateError": "Fehler",
+    "settings.updateLastChecked": "Zuletzt geprüft",
+    "settings.updateNoRelease": "Noch keine Release-Information geladen.",
+    "settings.updateAvailable": "Ein neueres Release ist verfügbar.",
+    "settings.updateNotAvailable": "Die installierte Version ist bereits aktuell.",
+    "settings.updateOpenRelease": "Release-Seite öffnen",
+    "settings.updateInstallStarted": "Release-Download gestartet. Die App startet nach der Installation automatisch neu.",
+    "settings.updateUploadStarted": "ZIP-Upload angenommen. Die App startet nach der Installation automatisch neu.",
+    "settings.updateRunning": "Update läuft. Der Status wird automatisch weiter aktualisiert.",
+    "settings.updateSource": "Quelle",
+    "settings.updateNone": "Nicht verfügbar",
 
     "footer.help": "Tipp: Im Einstellungsbereich kannst du einen weiteren Kalender importieren.",
     "footer.version": "Version {{version}}",
@@ -856,6 +926,130 @@ async function readAppMeta() {
     console.warn("App meta read failed", error);
     return null;
   }
+}
+
+function getDefaultUpdateInfo() {
+  return {
+    config: {
+      repositoryUrl: "https://github.com/HJS72/TiMiPlanner",
+      restartCommand: "",
+      preservePaths: [
+        "timiplanner.db",
+        "timiplanner.db-shm",
+        "timiplanner.db-wal",
+        "updater-config.json",
+        "updater-status.json",
+      ],
+    },
+    status: {
+      status: "idle",
+      message: "",
+      error: "",
+      source: "",
+      currentVersion: "1.0.0",
+      targetVersion: "",
+      startedAt: null,
+      finishedAt: null,
+      lastCheckedAt: null,
+      latestRelease: null,
+    },
+  };
+}
+
+async function requestJson(url, options = {}) {
+  const response = await fetch(url, options);
+  let payload = null;
+  try {
+    payload = await response.json();
+  } catch (_error) {
+    payload = null;
+  }
+
+  if (!response.ok || !payload || payload.ok !== true) {
+    throw new Error((payload && payload.error) || `Request failed (${response.status})`);
+  }
+
+  return payload;
+}
+
+function normalizeUpdateInfo(payload) {
+  const fallback = getDefaultUpdateInfo();
+  const config = payload && payload.config && typeof payload.config === "object"
+    ? payload.config
+    : fallback.config;
+  const status = payload && payload.status && typeof payload.status === "object"
+    ? payload.status
+    : fallback.status;
+
+  return {
+    config: {
+      repositoryUrl: typeof config.repositoryUrl === "string" ? config.repositoryUrl : fallback.config.repositoryUrl,
+      restartCommand: typeof config.restartCommand === "string" ? config.restartCommand : fallback.config.restartCommand,
+      preservePaths: Array.isArray(config.preservePaths) ? config.preservePaths : fallback.config.preservePaths,
+    },
+    status: {
+      ...fallback.status,
+      ...status,
+      currentVersion: typeof status.currentVersion === "string"
+        ? status.currentVersion
+        : (appState.appVersion || fallback.status.currentVersion),
+    },
+  };
+}
+
+function clearUpdatePollTimer() {
+  if (appState.updatePollTimer) {
+    clearTimeout(appState.updatePollTimer);
+    appState.updatePollTimer = null;
+  }
+}
+
+function scheduleUpdateStatusRefresh(delay = 4000) {
+  clearUpdatePollTimer();
+  appState.updatePollTimer = setTimeout(() => {
+    appState.updatePollTimer = null;
+    loadUpdateInfo({ force: true, render: true }).catch((error) => {
+      console.error("Update status refresh failed", error);
+      scheduleUpdateStatusRefresh(6000);
+    });
+  }, delay);
+}
+
+async function loadUpdateInfo({ force = false, render = true } = {}) {
+  if (!force && appState.updateInfo) {
+    return appState.updateInfo;
+  }
+
+  if (appState.updateInfoLoading) {
+    return appState.updateInfoLoading;
+  }
+
+  appState.updateInfoLoading = (async () => {
+    try {
+      const payload = await requestJson("/api/update/status", { method: "GET" });
+      appState.updateInfo = normalizeUpdateInfo(payload);
+      if (appState.updateInfo.status.status === "running") {
+        scheduleUpdateStatusRefresh();
+      } else {
+        clearUpdatePollTimer();
+      }
+      return appState.updateInfo;
+    } catch (error) {
+      console.error("Update status read failed", error);
+      if (!appState.updateInfo) {
+        appState.updateInfo = getDefaultUpdateInfo();
+      }
+      appState.updateInfo.status.error = error.message || "Failed to load update status.";
+      return appState.updateInfo;
+    } finally {
+      appState.updateInfoLoading = null;
+      if (render && appState.currentUser && hasRole(appState.currentUser, "parent") && appState.currentTab === "settings") {
+        renderApp();
+      }
+    }
+  })();
+
+  return appState.updateInfoLoading;
 }
 
 async function writeStorageToDatabase(value) {
@@ -2673,21 +2867,41 @@ function renderDashboard(container) {
         }
 
         const list = createElement("div", { className: "overview-unscheduled-table" });
+
+        // Group tasks by title (case-insensitive)
+        const taskGroupMap = new Map();
+        const taskGroupOrder = [];
         sectionTasks.forEach((task) => {
+          const key = task.title.trim().toLowerCase();
+          if (taskGroupMap.has(key)) {
+            taskGroupMap.get(key).push(task);
+          } else {
+            taskGroupMap.set(key, [task]);
+            taskGroupOrder.push(key);
+          }
+        });
+
+        taskGroupOrder.forEach((key) => {
+          const groupTasks = taskGroupMap.get(key);
+          const task = groupTasks[0];
+          const count = groupTasks.length;
+          const displayTitle = count > 1 ? `${count}x ${task.title}` : task.title;
+          const singlePoints = getTaskPoints(task);
+
           const item = createElement("div", { className: "overview-task-item" });
-          const title = createElement("span", { className: "overview-task-title", text: task.title });
+          const title = createElement("span", { className: "overview-task-title", text: displayTitle });
           const points = createElement("span", {
             className: "overview-task-points",
-            text: `${getTaskPoints(task)} ${t("task.pointsShort")}`,
+            text: `${t("task.each")} ${singlePoints} ${t("task.pointsShort")}`,
           });
           item.appendChild(title);
           item.appendChild(points);
           item.appendChild(makeTaskStatusCircleBtn(task, task.dueDate));
 
-          const overviewTooltipParts = [task.title];
+          const overviewTooltipParts = [displayTitle];
           if (task.description) overviewTooltipParts.push(task.description);
           overviewTooltipParts.push(`${t("task.durationShort")}: ${formatDurationMinutes(getTaskDurationMinutes(task))}`);
-          overviewTooltipParts.push(`${t("task.points")}: ${getTaskPoints(task)}`);
+          overviewTooltipParts.push(`${t("task.points")}: ${singlePoints}`);
           const infoBtn = createElement("button", {
             className: "overview-tooltip-btn",
             text: "?",
@@ -2707,6 +2921,14 @@ function renderDashboard(container) {
             item.setAttribute("draggable", "true");
             item.addEventListener("dragstart", (event) => {
               event.dataTransfer.setData("text/plain", task.id);
+              if (count > 1) {
+                title.textContent = task.title;
+              }
+            });
+            item.addEventListener("dragend", () => {
+              if (count > 1) {
+                title.textContent = displayTitle;
+              }
             });
           }
 
@@ -2952,12 +3174,6 @@ function renderTaskCard(task, showActions = true) {
 
   const titleRow = createElement("div", { className: "task-title-row" });
   const title = createElement("h3", { text: task.title });
-  const avatar = createElement("span", { className: "user-avatar" });
-  avatar.textContent = getUserAvatar(assignee);
-  avatar.title = assignee ? assignee.name : "";
-  avatar.style.background = hexToRgba(assigneeColor, 0.2);
-  avatar.style.borderColor = hexToRgba(assigneeColor, 0.5);
-  titleRow.appendChild(avatar);
   titleRow.appendChild(title);
   if (task.isReadonly) {
     titleRow.appendChild(createReadonlyLock());
@@ -2970,7 +3186,7 @@ function renderTaskCard(task, showActions = true) {
 
   const badges = createElement("div", { className: "badges" });
   if (assignee) {
-    const assignedBadge = createElement("span", { className: "badge", text: `${getUserAvatar(assignee)} ${assignee.name}` });
+    const assignedBadge = createElement("span", { className: "badge", text: assignee.name });
     assignedBadge.style.background = hexToRgba(assigneeColor, 0.15);
     assignedBadge.style.color = assigneeColor;
     badges.appendChild(assignedBadge);
@@ -3976,12 +4192,7 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
       taskEl.style.width = `calc((100% - ${cardHorizontalPadding * 2}px) / ${entry.columnCount} - 2px)`;
       taskEl.style.right = "auto";
 
-      const avatar = createElement("span", { className: "user-avatar tiny", text: getUserAvatar(assignee) });
-      avatar.style.background = hexToRgba(assigneeColor, 0.24);
-      avatar.style.borderColor = hexToRgba(assigneeColor, 0.5);
-
       const text = createElement("span", { className: "overview-week-task-label", text: entry.task.title });
-      taskEl.appendChild(avatar);
       taskEl.appendChild(text);
       taskEl.appendChild(makeTaskStatusCircleBtn(entry.task, due));
 
@@ -3993,7 +4204,6 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
         });
           taskEl.addEventListener("dragover", (event) => event.preventDefault());
           taskEl.addEventListener("drop", handleDrop);
-        attachWeeklyTaskResize(entry.task, taskEl, slotMinutes, slotHeight);
       }
 
       const assigneeName = assignee ? assignee.name : t("task.unassigned");
@@ -4071,8 +4281,14 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
 }
 
 function renderSettings(container) {
-  const panel = createElement("section", { className: "panel" });
+  const panel = createElement("section", { className: "panel settings-panel" });
   panel.appendChild(createElement("h2", { text: t("settings.title") }));
+
+  if (!appState.updateInfo && !appState.updateInfoLoading) {
+    loadUpdateInfo({ render: true }).catch((error) => {
+      console.error("Initial update status load failed", error);
+    });
+  }
 
   const help = createElement("div", { className: "help" });
   help.textContent = t("settings.help");
@@ -4115,12 +4331,6 @@ function renderSettings(container) {
 
   const profileHint = createElement("div", { className: "help", text: t("settings.passwordKeep") });
 
-  const profileChildAvatarLabel = createElement("label");
-  profileChildAvatarLabel.innerHTML = `<span>${t("settings.childAvatar")}</span>`;
-  const profileChildAvatarInput = createElement("input", { className: "input", attrs: { type: "text", maxlength: "2", name: "childAvatar" } });
-  profileChildAvatarInput.value = getUserAvatar(appState.currentUser);
-  profileChildAvatarLabel.appendChild(profileChildAvatarInput);
-
   const profileChildColorLabel = createElement("label");
   profileChildColorLabel.innerHTML = `<span>${t("settings.childColor")}</span>`;
   const profileChildColorInput = createElement("input", { className: "input input-color", attrs: { type: "color", name: "childColor" } });
@@ -4145,7 +4355,6 @@ function renderSettings(container) {
   profileChildWebcalEnabledInput.checked = appState.currentUser.webcalEnabled !== false;
   profileChildWebcalEnabledLabel.appendChild(profileChildWebcalEnabledInput);
 
-  const profileChildHint = createElement("div", { className: "help", text: t("settings.childAvatarHint") });
   const profileResult = createElement("div", { className: "help" });
 
   const profileSaveBtn = createElement("button", {
@@ -4163,7 +4372,6 @@ function renderSettings(container) {
     const username = profileUsernameInput.value.trim();
     const password = profilePasswordInput.value;
     const locale = profileLangSelect.value;
-    const childAvatar = profileChildAvatarInput.value;
     const childColor = profileChildColorInput.value;
     const childWebcal = profileChildWebcalInput.value.trim();
     const childWebcalEnabled = profileChildWebcalEnabledInput.checked;
@@ -4190,7 +4398,6 @@ function renderSettings(container) {
     storage.users[userIdx].username = username;
     storage.users[userIdx].locale = locale;
     if (storage.users[userIdx].role === "child") {
-      storage.users[userIdx].avatar = normalizeAvatar(childAvatar, storage.users[userIdx]);
       storage.users[userIdx].color = normalizeHexColor(childColor, getUserColor(storage.users[userIdx]));
       storage.users[userIdx].webcalUrl = childWebcal;
       storage.users[userIdx].webcalEnabled = childWebcalEnabled;
@@ -4223,11 +4430,9 @@ function renderSettings(container) {
   profileForm.appendChild(profileLangLabel);
   profileForm.appendChild(profilePasswordLabel);
   if (appState.currentUser.role === "child") {
-    profileForm.appendChild(profileChildAvatarLabel);
     profileForm.appendChild(profileChildColorLabel);
     profileForm.appendChild(profileChildWebcalLabel);
     profileForm.appendChild(profileChildWebcalEnabledLabel);
-    profileForm.appendChild(profileChildHint);
   }
   profileForm.appendChild(profileHint);
   profileForm.appendChild(profileSaveBtn);
@@ -4431,12 +4636,6 @@ function renderSettings(container) {
     });
     userPasswordLabel.appendChild(userPasswordInput);
 
-    const userAvatarLabel = createElement("label");
-    userAvatarLabel.innerHTML = `<span>${t("settings.childAvatar")}</span>`;
-    const userAvatarInput = createElement("input", { className: "input", attrs: { type: "text", maxlength: "2" } });
-    userAvatarInput.value = formUser.role === "child" ? getUserAvatar(formUser) : "";
-    userAvatarLabel.appendChild(userAvatarInput);
-
     const userColorLabel = createElement("label");
     userColorLabel.innerHTML = `<span>${t("settings.childColor")}</span>`;
     const userColorInput = createElement("input", { className: "input input-color", attrs: { type: "color" } });
@@ -4461,7 +4660,6 @@ function renderSettings(container) {
     userWebcalEnabledInput.checked = formUser.webcalEnabled !== false;
     userWebcalEnabledLabel.appendChild(userWebcalEnabledInput);
 
-    const userChildHint = createElement("div", { className: "help settings-span-2", text: t("settings.childAvatarHint") });
     const userResult = createElement("div", { className: "help settings-span-2" });
     const userSaveBtn = createElement("button", {
       className: "button primary settings-span-2 compact-on-small",
@@ -4479,11 +4677,9 @@ function renderSettings(container) {
 
     function toggleChildFields() {
       const showChild = currentRole() === "child";
-      userAvatarLabel.style.display = showChild ? "grid" : "none";
       userColorLabel.style.display = showChild ? "grid" : "none";
       userWebcalLabel.style.display = showChild ? "grid" : "none";
       userWebcalEnabledLabel.style.display = showChild ? "grid" : "none";
-      userChildHint.style.display = showChild ? "block" : "none";
     }
 
     if (userRoleSelect) {
@@ -4500,7 +4696,6 @@ function renderSettings(container) {
       const newPassword = userPasswordInput.value;
       const locale = userLocaleSelect.value;
       const role = currentRole();
-      const avatar = userAvatarInput.value;
       const color = userColorInput.value;
       const webcalUrl = userWebcalInput.value.trim();
       const webcalEnabled = userWebcalEnabledInput.checked;
@@ -4533,7 +4728,6 @@ function renderSettings(container) {
           locale,
         };
         if (role === "child") {
-          savedUser.avatar = normalizeAvatar(avatar, savedUser);
           savedUser.color = normalizeHexColor(color, DEFAULT_CHILD_COLORS[getChildUsers().length % DEFAULT_CHILD_COLORS.length]);
           savedUser.webcalUrl = webcalUrl;
           savedUser.webcalEnabled = webcalEnabled;
@@ -4546,7 +4740,6 @@ function renderSettings(container) {
         storage.users[userIdx].username = username;
         storage.users[userIdx].locale = locale;
         if (storage.users[userIdx].role === "child") {
-          storage.users[userIdx].avatar = normalizeAvatar(avatar, storage.users[userIdx]);
           storage.users[userIdx].color = normalizeHexColor(color, getUserColor(storage.users[userIdx]));
           storage.users[userIdx].webcalUrl = webcalUrl;
           storage.users[userIdx].webcalEnabled = webcalEnabled;
@@ -4582,11 +4775,9 @@ function renderSettings(container) {
     userForm.appendChild(userRoleLabel);
     userForm.appendChild(userUsernameLabel);
     userForm.appendChild(userLocaleLabel);
-    userForm.appendChild(userAvatarLabel);
     userForm.appendChild(userColorLabel);
     userForm.appendChild(userWebcalLabel);
     userForm.appendChild(userWebcalEnabledLabel);
-    userForm.appendChild(userChildHint);
     userForm.appendChild(userPasswordLabel);
     userForm.appendChild(userSaveBtn);
     userForm.appendChild(userResult);
@@ -4741,6 +4932,242 @@ function renderSettings(container) {
 
   section.appendChild(form);
   panel.appendChild(section);
+
+  const updateInfo = appState.updateInfo || getDefaultUpdateInfo();
+  const updateSection = createElement("div", { className: "card settings-card" });
+  updateSection.appendChild(createElement("h3", { text: t("settings.updateTitle") }));
+  updateSection.appendChild(createElement("div", { className: "help", text: t("settings.updateHelp") }));
+
+  const updateForm = createElement("form", { className: "form" });
+  const updateRepoLabel = createElement("label");
+  updateRepoLabel.innerHTML = `<span>${t("settings.updateRepository")}</span>`;
+  const updateRepoInput = createElement("input", {
+    className: "input",
+    attrs: { type: "text", placeholder: "https://github.com/owner/repo" },
+  });
+  updateRepoInput.value = updateInfo.config.repositoryUrl || "";
+  updateRepoLabel.appendChild(updateRepoInput);
+
+  const updateRestartLabel = createElement("label");
+  updateRestartLabel.innerHTML = `<span>${t("settings.updateRestart")}</span>`;
+  const updateRestartInput = createElement("input", {
+    className: "input",
+    attrs: { type: "text", placeholder: "sudo systemctl restart timiplanner" },
+  });
+  updateRestartInput.value = updateInfo.config.restartCommand || "";
+  updateRestartLabel.appendChild(updateRestartInput);
+
+  const updatePreserveLabel = createElement("label", { className: "settings-span-2" });
+  updatePreserveLabel.innerHTML = `<span>${t("settings.updatePreserve")}</span>`;
+  const updatePreserveInput = createElement("input", {
+    className: "input",
+    attrs: { type: "text", placeholder: "timiplanner.db, updater-config.json" },
+  });
+  updatePreserveInput.value = Array.isArray(updateInfo.config.preservePaths)
+    ? updateInfo.config.preservePaths.join(", ")
+    : "";
+  updatePreserveLabel.appendChild(updatePreserveInput);
+
+  const updateRestartHelp = createElement("div", { className: "help", text: t("settings.updateRestartHelp") });
+  const updatePreserveHelp = createElement("div", { className: "help", text: t("settings.updatePreserveHelp") });
+  const updateUploadHint = createElement("div", { className: "help", text: t("settings.updateUploadHint") });
+  const updateResult = createElement("div", { className: "help" });
+  const updateActions = createElement("div", { className: "settings-update-actions" });
+
+  const saveUpdateBtn = createElement("button", {
+    className: "button primary compact-on-small",
+    html: `${icon("save")}<span class="button-label">${t("settings.updateSave")}</span>`,
+    attrs: { "aria-label": t("settings.updateSave"), title: t("settings.updateSave") },
+  });
+  saveUpdateBtn.type = "submit";
+
+  const checkUpdateBtn = createElement("button", {
+    className: "button secondary compact-on-small",
+    html: `${icon("refresh")}<span class="button-label">${t("settings.updateCheck")}</span>`,
+    attrs: { "aria-label": t("settings.updateCheck"), title: t("settings.updateCheck") },
+  });
+  checkUpdateBtn.type = "button";
+
+  const installReleaseBtn = createElement("button", {
+    className: "button secondary compact-on-small",
+    html: `${icon("save")}<span class="button-label">${t("settings.updateInstallRelease")}</span>`,
+    attrs: { "aria-label": t("settings.updateInstallRelease"), title: t("settings.updateInstallRelease") },
+  });
+  installReleaseBtn.type = "button";
+
+  const uploadZipBtn = createElement("button", {
+    className: "button secondary compact-on-small",
+    html: `${icon("add")}<span class="button-label">${t("settings.updateUploadZip")}</span>`,
+    attrs: { "aria-label": t("settings.updateUploadZip"), title: t("settings.updateUploadZip") },
+  });
+  uploadZipBtn.type = "button";
+
+  const uploadZipInput = createElement("input", {
+    className: "settings-file-input",
+    attrs: { type: "file", accept: ".zip,application/zip" },
+  });
+
+  const latestRelease = updateInfo.status.latestRelease;
+  const updateBusy = appState.updateActionBusy || updateInfo.status.status === "running";
+
+  function setUpdateBusy(disabled) {
+    [updateRepoInput, updateRestartInput, updatePreserveInput].forEach((field) => {
+      field.disabled = disabled;
+    });
+    [saveUpdateBtn, checkUpdateBtn, installReleaseBtn, uploadZipBtn].forEach((button) => {
+      button.disabled = disabled;
+    });
+  }
+
+  async function handleUpdateRequest(action, requestFactory, successMessage) {
+    appState.updateActionBusy = true;
+    setUpdateBusy(true);
+    updateResult.textContent = "";
+    try {
+      const payload = await requestFactory();
+      appState.updateInfo = normalizeUpdateInfo(payload);
+      updateResult.textContent = successMessage || "";
+      if (appState.updateInfo.status.status === "running") {
+        updateResult.textContent = successMessage
+          ? `${successMessage} ${t("settings.updateRunning")}`
+          : t("settings.updateRunning");
+        scheduleUpdateStatusRefresh(3000);
+      }
+      renderApp();
+    } catch (error) {
+      console.error(`${action} failed`, error);
+      updateResult.textContent = error.message || t("settings.syncFailed");
+      loadUpdateInfo({ force: true, render: false }).catch((refreshError) => {
+        console.error("Refresh after update action failed", refreshError);
+      });
+    } finally {
+      appState.updateActionBusy = false;
+      if (appState.currentTab === "settings") {
+        renderApp();
+      }
+    }
+  }
+
+  updateForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const preservePaths = updatePreserveInput.value
+      .split(",")
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+
+    await handleUpdateRequest(
+      "save update settings",
+      () => requestJson("/api/update/config", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          repositoryUrl: updateRepoInput.value.trim(),
+          restartCommand: updateRestartInput.value.trim(),
+          preservePaths,
+        }),
+      }),
+      t("settings.updateSaveOk")
+    );
+  });
+
+  checkUpdateBtn.addEventListener("click", async () => {
+    await handleUpdateRequest(
+      "check update",
+      () => requestJson("/api/update/check", { method: "POST" }),
+      ""
+    );
+  });
+
+  installReleaseBtn.addEventListener("click", async () => {
+    await handleUpdateRequest(
+      "install release update",
+      () => requestJson("/api/update/release", { method: "POST" }),
+      t("settings.updateInstallStarted")
+    );
+  });
+
+  uploadZipBtn.addEventListener("click", () => {
+    uploadZipInput.click();
+  });
+
+  uploadZipInput.addEventListener("change", async () => {
+    const [file] = Array.from(uploadZipInput.files || []);
+    if (!file) return;
+
+    await handleUpdateRequest(
+      "upload update zip",
+      async () => {
+        const formData = new FormData();
+        formData.append("zip", file);
+        return requestJson("/api/update/upload", {
+          method: "POST",
+          body: formData,
+        });
+      },
+      t("settings.updateUploadStarted")
+    );
+
+    uploadZipInput.value = "";
+  });
+
+  updateActions.appendChild(saveUpdateBtn);
+  updateActions.appendChild(checkUpdateBtn);
+  updateActions.appendChild(installReleaseBtn);
+  updateActions.appendChild(uploadZipBtn);
+
+  const latestVersion = latestRelease
+    ? (latestRelease.name || latestRelease.tagName || latestRelease.version || t("settings.updateNone"))
+    : t("settings.updateNone");
+  const lastChecked = updateInfo.status.lastCheckedAt
+    ? `${formatDate(new Date(updateInfo.status.lastCheckedAt), { year: "numeric", month: "short", day: "numeric" })} ${formatTime(new Date(updateInfo.status.lastCheckedAt))}`
+    : t("settings.updateNone");
+  const updateStatusLabel = t(`settings.updateStatus${(updateInfo.status.status || "idle").charAt(0).toUpperCase()}${(updateInfo.status.status || "idle").slice(1)}`);
+  const releaseSummary = latestRelease
+    ? (latestRelease.available ? t("settings.updateAvailable") : t("settings.updateNotAvailable"))
+    : t("settings.updateNoRelease");
+
+  const updateSummary = createElement("div", { className: "settings-update-summary" });
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateCurrentVersion")}: ${updateInfo.status.currentVersion || appState.buildVersion}` }));
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateLatestVersion")}: ${latestVersion}` }));
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateStatus")}: ${updateStatusLabel}` }));
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateSource")}: ${updateInfo.status.source || t("settings.updateNone")}` }));
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateLastChecked")}: ${lastChecked}` }));
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateMessage")}: ${updateInfo.status.message || releaseSummary}` }));
+  updateSummary.appendChild(createElement("div", { text: `${t("settings.updateError")}: ${updateInfo.status.error || t("settings.updateNone")}` }));
+
+  if (latestRelease) {
+    updateSummary.appendChild(createElement("div", { text: `${t("settings.updateReleaseName")}: ${latestRelease.name || latestRelease.tagName || t("settings.updateNone")}` }));
+    if (latestRelease.publishedAt) {
+      updateSummary.appendChild(createElement("div", {
+        text: `${t("settings.updatePublishedAt")}: ${formatDate(new Date(latestRelease.publishedAt), { year: "numeric", month: "short", day: "numeric" })} ${formatTime(new Date(latestRelease.publishedAt))}`,
+      }));
+    }
+    if (latestRelease.htmlUrl) {
+      const releaseLink = createElement("a", {
+        className: "link",
+        text: t("settings.updateOpenRelease"),
+        attrs: { href: latestRelease.htmlUrl, target: "_blank", rel: "noreferrer" },
+      });
+      updateSummary.appendChild(releaseLink);
+    }
+  }
+
+  installReleaseBtn.disabled = updateBusy || !latestRelease;
+  setUpdateBusy(updateBusy);
+
+  updateForm.appendChild(updateRepoLabel);
+  updateForm.appendChild(updateRestartLabel);
+  updateForm.appendChild(updatePreserveLabel);
+  updateForm.appendChild(updateRestartHelp);
+  updateForm.appendChild(updatePreserveHelp);
+  updateForm.appendChild(updateActions);
+  updateForm.appendChild(updateUploadHint);
+  updateForm.appendChild(uploadZipInput);
+  updateForm.appendChild(updateSummary);
+  updateForm.appendChild(updateResult);
+
+  updateSection.appendChild(updateForm);
+  panel.appendChild(updateSection);
   container.appendChild(panel);
 }
 
@@ -5189,6 +5616,7 @@ function scheduleMenuHide() {
 const appState = {
   locale: storage.locale || DEFAULT_LOCALE,
   buildVersion: "0.0000.0000",
+  appVersion: "1.0.0",
   currentTab: "dashboard",
   statisticsRange: "3m",
   statisticsChildId: "all",
@@ -5202,6 +5630,10 @@ const appState = {
   stateRefreshTimer: null,
   stateUpdatedAt: null,
   settingsEditingUserId: null,
+  updateInfo: null,
+  updateInfoLoading: null,
+  updateActionBusy: false,
+  updatePollTimer: null,
   lastAction: null,
   menuHideTimer: null,
 };
@@ -5210,6 +5642,9 @@ async function bootstrapApp() {
   const appMeta = await readAppMeta();
   if (appMeta && typeof appMeta.buildVersion === "string" && appMeta.buildVersion) {
     appState.buildVersion = appMeta.buildVersion;
+  }
+  if (appMeta && typeof appMeta.appVersion === "string" && appMeta.appVersion) {
+    appState.appVersion = appMeta.appVersion;
   }
 
   const remoteState = await readStorageFromDatabase();

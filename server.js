@@ -1,8 +1,13 @@
 const express = require("express");
+const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const http = require("http");
 const https = require("https");
+const { spawn } = require("child_process");
+const multer = require("multer");
 const sqlite3 = require("sqlite3").verbose();
+const packageJson = require("./package.json");
 
 const app = express();
 const PORT = process.env.PORT || 5500;
@@ -11,6 +16,18 @@ const db = new sqlite3.Database(dbPath);
 let syncTimer = null;
 let syncPromise = null;
 let scheduledIntervalMinutes = null;
+const UPDATER_CONFIG_PATH = path.join(__dirname, "updater-config.json");
+const UPDATER_STATUS_PATH = path.join(__dirname, "updater-status.json");
+const UPDATES_TEMP_ROOT = path.join(os.tmpdir(), "timiplanner-updates");
+
+fs.mkdirSync(UPDATES_TEMP_ROOT, { recursive: true });
+
+const upload = multer({
+  dest: UPDATES_TEMP_ROOT,
+  limits: {
+    fileSize: 200 * 1024 * 1024,
+  },
+});
 
 function formatBuildVersion(date = new Date()) {
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -21,6 +38,22 @@ function formatBuildVersion(date = new Date()) {
 }
 
 const BUILD_VERSION = formatBuildVersion();
+const APP_VERSION = typeof packageJson.version === "string" && packageJson.version
+  ? packageJson.version
+  : BUILD_VERSION;
+const DEFAULT_UPDATER_CONFIG = Object.freeze({
+  repositoryUrl: "https://github.com/HJS72/TiMiPlanner",
+  owner: "HJS72",
+  repo: "TiMiPlanner",
+  restartCommand: "",
+  preservePaths: [
+    "timiplanner.db",
+    "timiplanner.db-shm",
+    "timiplanner.db-wal",
+    "updater-config.json",
+    "updater-status.json",
+  ],
+});
 
 const DEFAULT_APP_STATE = {
   "locale": "en",
@@ -915,7 +948,140 @@ function normalizeWebcalUrl(value) {
   return "";
 }
 
-function fetchText(url, redirectsLeft = 5) {
+function normalizePreservePath(value) {
+  if (typeof value !== "string") return "";
+  const normalized = value.trim().replace(/\\/g, "/").replace(/^\/+/, "");
+  if (!normalized || normalized.includes("..")) {
+    return "";
+  }
+  return normalized;
+}
+
+function parseGitHubRepo(repositoryUrl, owner, repo) {
+  const normalizedOwner = typeof owner === "string" ? owner.trim() : "";
+  const normalizedRepo = typeof repo === "string" ? repo.trim() : "";
+  if (normalizedOwner && normalizedRepo) {
+    return {
+      repositoryUrl: `https://github.com/${normalizedOwner}/${normalizedRepo}`,
+      owner: normalizedOwner,
+      repo: normalizedRepo,
+    };
+  }
+
+  const raw = typeof repositoryUrl === "string" ? repositoryUrl.trim() : "";
+  if (!raw) {
+    return { ...DEFAULT_UPDATER_CONFIG };
+  }
+
+  const shorthand = raw.replace(/^https?:\/\/github\.com\//i, "").replace(/\.git$/i, "").replace(/^\/+|\/+$/g, "");
+  const parts = shorthand.split("/").filter(Boolean);
+  if (parts.length >= 2) {
+    return {
+      repositoryUrl: `https://github.com/${parts[0]}/${parts[1]}`,
+      owner: parts[0],
+      repo: parts[1],
+    };
+  }
+
+  return { ...DEFAULT_UPDATER_CONFIG };
+}
+
+function normalizeUpdaterConfig(value = {}) {
+  const parsedRepo = parseGitHubRepo(value.repositoryUrl, value.owner, value.repo);
+  const preservePaths = Array.isArray(value.preservePaths)
+    ? value.preservePaths.map(normalizePreservePath).filter(Boolean)
+    : DEFAULT_UPDATER_CONFIG.preservePaths;
+
+  return {
+    repositoryUrl: parsedRepo.repositoryUrl,
+    owner: parsedRepo.owner,
+    repo: parsedRepo.repo,
+    restartCommand: typeof value.restartCommand === "string" ? value.restartCommand.trim() : "",
+    preservePaths: Array.from(new Set([...(preservePaths.length ? preservePaths : DEFAULT_UPDATER_CONFIG.preservePaths)])),
+  };
+}
+
+function readJsonFile(filePath, fallbackValue) {
+  try {
+    if (!fs.existsSync(filePath)) {
+      return fallbackValue;
+    }
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    console.warn(`Failed to read ${path.basename(filePath)}`, error);
+    return fallbackValue;
+  }
+}
+
+function writeJsonFile(filePath, value) {
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function loadUpdaterConfig() {
+  return normalizeUpdaterConfig(readJsonFile(UPDATER_CONFIG_PATH, DEFAULT_UPDATER_CONFIG));
+}
+
+function saveUpdaterConfig(value) {
+  const config = normalizeUpdaterConfig(value);
+  writeJsonFile(UPDATER_CONFIG_PATH, config);
+  return config;
+}
+
+function getDefaultUpdaterStatus() {
+  return {
+    status: "idle",
+    message: "No update started yet.",
+    error: "",
+    source: "",
+    currentVersion: BUILD_VERSION,
+    targetVersion: "",
+    startedAt: null,
+    finishedAt: null,
+    lastCheckedAt: null,
+    latestRelease: null,
+  };
+}
+
+function loadUpdaterStatus() {
+  const raw = readJsonFile(UPDATER_STATUS_PATH, getDefaultUpdaterStatus());
+  return {
+    ...getDefaultUpdaterStatus(),
+    ...(raw && typeof raw === "object" ? raw : {}),
+    currentVersion: BUILD_VERSION,
+  };
+}
+
+function saveUpdaterStatus(value) {
+  const next = {
+    ...getDefaultUpdaterStatus(),
+    ...(value && typeof value === "object" ? value : {}),
+    currentVersion: BUILD_VERSION,
+  };
+  writeJsonFile(UPDATER_STATUS_PATH, next);
+  return next;
+}
+
+function normalizeVersion(value) {
+  return typeof value === "string" ? value.trim().replace(/^v/i, "") : "";
+}
+
+function compareVersions(left, right) {
+  const a = normalizeVersion(left);
+  const b = normalizeVersion(right);
+  if (!a && !b) return 0;
+  if (!a) return -1;
+  if (!b) return 1;
+  return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
+}
+
+function isUpdaterRunning() {
+  return loadUpdaterStatus().status === "running";
+}
+
+function fetchRemote(url, options = {}) {
+  const redirectsLeft = Number.isInteger(options.redirectsLeft) ? options.redirectsLeft : 5;
+  const requestHeaders = options.headers && typeof options.headers === "object" ? options.headers : {};
+
   return new Promise((resolve, reject) => {
     let parsed;
     try {
@@ -938,7 +1104,8 @@ function fetchText(url, redirectsLeft = 5) {
       path: `${parsed.pathname}${parsed.search}`,
       headers: {
         "User-Agent": "TiMiPlanner-Webcal/1.0",
-        Accept: "text/calendar,text/plain,*/*",
+        Accept: "*/*",
+        ...requestHeaders,
       },
     };
 
@@ -961,7 +1128,7 @@ function fetchText(url, redirectsLeft = 5) {
 
           const redirectedUrl = new URL(res.headers.location, parsed).toString();
           res.resume();
-          fetchText(redirectedUrl, redirectsLeft - 1).then(resolve).catch(reject);
+          fetchRemote(redirectedUrl, { ...options, redirectsLeft: redirectsLeft - 1 }).then(resolve).catch(reject);
           return;
         }
 
@@ -974,7 +1141,11 @@ function fetchText(url, redirectsLeft = 5) {
         const chunks = [];
         res.on("data", (chunk) => chunks.push(chunk));
         res.on("end", () => {
-          resolve(Buffer.concat(chunks).toString("utf8"));
+          resolve({
+            buffer: Buffer.concat(chunks),
+            headers: res.headers,
+            statusCode,
+          });
         });
       }
     );
@@ -991,12 +1162,241 @@ function fetchText(url, redirectsLeft = 5) {
   });
 }
 
+function fetchText(url, redirectsLeft = 5) {
+  return fetchRemote(url, {
+    redirectsLeft,
+    headers: {
+      Accept: "text/calendar,text/plain,*/*",
+    },
+  }).then((result) => result.buffer.toString("utf8"));
+}
+
+async function fetchJson(url, headers = {}) {
+  const result = await fetchRemote(url, {
+    headers: {
+      Accept: "application/vnd.github+json,application/json",
+      ...headers,
+    },
+  });
+
+  try {
+    return JSON.parse(result.buffer.toString("utf8"));
+  } catch (error) {
+    throw new Error("Remote returned invalid JSON");
+  }
+}
+
+async function fetchLatestGitHubRelease(config) {
+  if (!config.owner || !config.repo) {
+    throw new Error("GitHub repository is not configured.");
+  }
+
+  const payload = await fetchJson(`https://api.github.com/repos/${config.owner}/${config.repo}/releases/latest`, {
+    "X-GitHub-Api-Version": "2022-11-28",
+  });
+
+  if (!payload || typeof payload !== "object") {
+    throw new Error("GitHub release response was empty.");
+  }
+
+  const tagName = typeof payload.tag_name === "string" ? payload.tag_name : "";
+  const releaseVersion = normalizeVersion(payload.name || tagName || "");
+
+  return {
+    tagName,
+    version: releaseVersion,
+    name: typeof payload.name === "string" ? payload.name : tagName,
+    publishedAt: payload.published_at || null,
+    htmlUrl: typeof payload.html_url === "string" ? payload.html_url : `${config.repositoryUrl}/releases`,
+    zipballUrl: typeof payload.zipball_url === "string"
+      ? payload.zipball_url
+      : `${config.repositoryUrl}/archive/refs/tags/${encodeURIComponent(tagName)}.zip`,
+    prerelease: payload.prerelease === true,
+    available: compareVersions(BUILD_VERSION, releaseVersion) < 0,
+  };
+}
+
+function createUpdateJobTempDir() {
+  return fs.mkdtempSync(path.join(UPDATES_TEMP_ROOT, "job-"));
+}
+
+function startDetachedUpdater({ zipPath, source, targetVersion, restartCommand, preservePaths }) {
+  const existingStatus = loadUpdaterStatus();
+  const nextStatus = saveUpdaterStatus({
+    ...existingStatus,
+    status: "running",
+    message: "Update package staged. Installing update...",
+    error: "",
+    source,
+    targetVersion: targetVersion || "",
+    startedAt: new Date().toISOString(),
+    finishedAt: null,
+  });
+
+  const child = spawn(process.execPath, [path.join(__dirname, "update-runner.js")], {
+    cwd: __dirname,
+    detached: true,
+    stdio: "ignore",
+    env: {
+      ...process.env,
+      TIMI_UPDATE_PROJECT_ROOT: __dirname,
+      TIMI_UPDATE_ZIP_PATH: zipPath,
+      TIMI_UPDATE_CURRENT_PID: String(process.pid),
+      TIMI_UPDATE_RESTART_COMMAND: restartCommand || "",
+      TIMI_UPDATE_PRESERVE_PATHS: JSON.stringify(preservePaths || []),
+      TIMI_UPDATE_STATUS_PATH: UPDATER_STATUS_PATH,
+      TIMI_UPDATE_SOURCE: source || "",
+      TIMI_UPDATE_TARGET_VERSION: targetVersion || "",
+      TIMI_UPDATE_APP_VERSION: APP_VERSION,
+    },
+  });
+  child.unref();
+  return nextStatus;
+}
+
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
 });
 
 app.get("/api/meta", (_req, res) => {
-  res.json({ ok: true, buildVersion: BUILD_VERSION });
+  res.json({ ok: true, buildVersion: BUILD_VERSION, appVersion: APP_VERSION });
+});
+
+app.get("/api/update/status", (_req, res) => {
+  res.json({
+    ok: true,
+    config: loadUpdaterConfig(),
+    status: loadUpdaterStatus(),
+  });
+});
+
+app.post("/api/update/config", (req, res) => {
+  try {
+    const config = saveUpdaterConfig(req.body || {});
+    res.json({ ok: true, config, status: loadUpdaterStatus() });
+  } catch (error) {
+    res.status(500).json({ ok: false, error: error.message || "Failed to save update settings." });
+  }
+});
+
+app.post("/api/update/check", async (_req, res) => {
+  try {
+    const config = loadUpdaterConfig();
+    const latestRelease = await fetchLatestGitHubRelease(config);
+    const status = saveUpdaterStatus({
+      ...loadUpdaterStatus(),
+      latestRelease,
+      lastCheckedAt: new Date().toISOString(),
+      message: latestRelease.available ? "A newer release is available." : "Already on the latest release.",
+      error: "",
+    });
+
+    res.json({ ok: true, config, status });
+  } catch (error) {
+    const status = saveUpdaterStatus({
+      ...loadUpdaterStatus(),
+      lastCheckedAt: new Date().toISOString(),
+      error: error.message || "Failed to check GitHub release.",
+      message: "Release check failed.",
+    });
+    res.status(502).json({ ok: false, error: status.error, status, config: loadUpdaterConfig() });
+  }
+});
+
+app.post("/api/update/release", async (_req, res) => {
+  if (isUpdaterRunning()) {
+    res.status(409).json({ ok: false, error: "An update is already running.", status: loadUpdaterStatus() });
+    return;
+  }
+
+  try {
+    const config = loadUpdaterConfig();
+    const latestRelease = await fetchLatestGitHubRelease(config);
+    const jobDir = createUpdateJobTempDir();
+    const zipPath = path.join(jobDir, "release.zip");
+    const zipResponse = await fetchRemote(latestRelease.zipballUrl, {
+      headers: { Accept: "application/octet-stream" },
+    });
+
+    fs.writeFileSync(zipPath, zipResponse.buffer);
+
+    const status = startDetachedUpdater({
+      zipPath,
+      source: "github-release",
+      targetVersion: latestRelease.version || latestRelease.tagName,
+      restartCommand: config.restartCommand,
+      preservePaths: config.preservePaths,
+    });
+
+    saveUpdaterStatus({
+      ...status,
+      latestRelease,
+      lastCheckedAt: new Date().toISOString(),
+    });
+
+    res.json({ ok: true, config, status: loadUpdaterStatus() });
+  } catch (error) {
+    const status = saveUpdaterStatus({
+      ...loadUpdaterStatus(),
+      status: "failed",
+      finishedAt: new Date().toISOString(),
+      error: error.message || "Failed to download the release package.",
+      message: "Release update could not be started.",
+    });
+    res.status(500).json({ ok: false, error: status.error, status, config: loadUpdaterConfig() });
+  }
+});
+
+app.post("/api/update/upload", upload.single("zip"), (req, res) => {
+  if (isUpdaterRunning()) {
+    if (req.file && req.file.path) {
+      fs.rmSync(req.file.path, { force: true });
+    }
+    res.status(409).json({ ok: false, error: "An update is already running.", status: loadUpdaterStatus() });
+    return;
+  }
+
+  const file = req.file;
+  if (!file || !file.path) {
+    res.status(400).json({ ok: false, error: "Please upload a ZIP archive." });
+    return;
+  }
+
+  try {
+    const config = loadUpdaterConfig();
+    const uploadedName = typeof file.originalname === "string" ? file.originalname : "update.zip";
+    const safeName = uploadedName.toLowerCase();
+    if (!safeName.endsWith(".zip")) {
+      fs.rmSync(file.path, { force: true });
+      res.status(400).json({ ok: false, error: "Only ZIP archives are supported." });
+      return;
+    }
+
+    const status = startDetachedUpdater({
+      zipPath: file.path,
+      source: "zip-upload",
+      targetVersion: "",
+      restartCommand: config.restartCommand,
+      preservePaths: config.preservePaths,
+    });
+
+    saveUpdaterStatus({
+      ...status,
+      message: `Uploaded package ${uploadedName}. Installing update...`,
+    });
+
+    res.json({ ok: true, config, status: loadUpdaterStatus() });
+  } catch (error) {
+    fs.rmSync(file.path, { force: true });
+    const status = saveUpdaterStatus({
+      ...loadUpdaterStatus(),
+      status: "failed",
+      finishedAt: new Date().toISOString(),
+      error: error.message || "Failed to start uploaded update.",
+      message: "Uploaded update could not be started.",
+    });
+    res.status(500).json({ ok: false, error: status.error, status, config: loadUpdaterConfig() });
+  }
 });
 
 app.get("/api/state", async (_req, res) => {

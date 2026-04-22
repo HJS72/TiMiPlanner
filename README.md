@@ -254,6 +254,26 @@ journalctl -u timiplanner -n 100 --no-pager
 
 ## Update Process
 
+### Web updater
+
+Parents can now open the Settings page and use the new update section to:
+
+- store the GitHub repository URL
+- optionally set a restart command such as `sudo systemctl restart timiplanner`
+- check the latest GitHub Release
+- install the latest release ZIP automatically
+- upload a repository ZIP manually
+
+The updater preserves these files by default during installation:
+
+- `timiplanner.db`
+- `timiplanner.db-shm`
+- `timiplanner.db-wal`
+- `updater-config.json`
+- `updater-status.json`
+
+If the app is managed by `systemd` or another supervisor, configure the restart command in Settings so the updater can restart the service correctly after `npm install` completes.
+
 To update the application from GitHub on your server:
 
 ### 1. Create a backup

@@ -1,0 +1,13 @@
+{
+  "repositoryUrl": "https://github.com/HJS72/TiMiPlanner",
+  "owner": "HJS72",
+  "repo": "TiMiPlanner",
+  "restartCommand": "",
+  "preservePaths": [
+    "timiplanner.db",
+    "timiplanner.db-shm",
+    "timiplanner.db-wal",
+    "updater-config.json",
+    "updater-status.json"
+  ]
+}

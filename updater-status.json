@@ -1,0 +1,21 @@
+{
+  "status": "idle",
+  "message": "A newer release is available.",
+  "error": "",
+  "source": "",
+  "currentVersion": "0.0422.1952",
+  "targetVersion": "",
+  "startedAt": null,
+  "finishedAt": null,
+  "lastCheckedAt": "2026-04-22T17:52:17.675Z",
+  "latestRelease": {
+    "tagName": "main",
+    "version": "ersion 0.0422.1507",
+    "name": "Version 0.0422.1507",
+    "publishedAt": "2026-04-22T15:14:50Z",
+    "htmlUrl": "https://github.com/HJS72/TiMiPlanner/releases/tag/main",
+    "zipballUrl": "https://api.github.com/repos/HJS72/TiMiPlanner/zipball/main",
+    "prerelease": false,
+    "available": true
+  }
+}
