@@ -107,7 +107,19 @@ node -v
 npm -v
 ```
 
-Clone or copy the project to the server, for example to `/opt/timiplanner`.
+Download the project from GitHub:
+
+```bash
+cd /opt
+sudo git clone https://github.com/HJS72/TiMiPlanner.git timiplanner
+sudo chown -R $USER:$USER /opt/timiplanner
+```
+
+If Git is not installed yet:
+
+```bash
+sudo apt install -y git
+```
 
 ### 2. Install the application
 
@@ -194,6 +206,42 @@ sudo systemctl daemon-reload
 sudo systemctl enable timiplanner
 sudo systemctl start timiplanner
 sudo systemctl status timiplanner
+```
+
+### 7. Start Server Automatically After Reboot
+
+If you use the `systemd` service above, enable autostart once:
+
+```bash
+sudo systemctl enable timiplanner
+```
+
+Verify autostart is active:
+
+```bash
+sudo systemctl is-enabled timiplanner
+```
+
+Expected output:
+
+- `enabled`
+
+Optional reboot test:
+
+```bash
+sudo reboot
+```
+
+After reconnecting to the server:
+
+```bash
+sudo systemctl status timiplanner
+```
+
+If needed, inspect logs:
+
+```bash
+journalctl -u timiplanner -n 100 --no-pager
 ```
 
 ## Production Notes
