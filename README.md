@@ -254,18 +254,76 @@ journalctl -u timiplanner -n 100 --no-pager
 
 ## Update Process
 
-To update the application on your server:
+To update the application from GitHub on your server:
+
+### 1. Create a backup
+
+At minimum, back up the database before updating:
 
 ```bash
 cd /opt/timiplanner
-git pull
-npm install
-sudo systemctl restart timiplanner
+cp timiplanner.db timiplanner.db.backup-$(date +%Y%m%d-%H%M%S)
 ```
 
-Before updates, back up:
+### 2. Stop the service
+
+```bash
+sudo systemctl stop timiplanner
+```
+
+### 3. Download the latest version from GitHub
+
+```bash
+cd /opt/timiplanner
+git fetch --all
+git pull
+```
+
+### 4. Reinstall dependencies on the server
+
+```bash
+cd /opt/timiplanner
+npm install
+```
+
+If native modules such as `sqlite3` cause problems after an update, rebuild them directly on the server:
+
+```bash
+cd /opt/timiplanner
+rm -rf node_modules package-lock.json
+npm install
+```
+
+### 5. Ensure file permissions are correct
+
+```bash
+sudo chown -R timiplanner:timiplanner /opt/timiplanner
+```
+
+### 6. Start the updated service
+
+```bash
+sudo systemctl start timiplanner
+```
+
+### 7. Verify the update
+
+```bash
+sudo systemctl status timiplanner
+journalctl -u timiplanner -n 100 --no-pager
+```
+
+Optional check that the service is still enabled after reboot:
+
+```bash
+sudo systemctl is-enabled timiplanner
+```
+
+Before and after updates, pay special attention to:
 
 - `timiplanner.db`
+- `node_modules` being rebuilt on the target server
+- the `timiplanner` service logs if startup fails
 
 ## Notes
 
