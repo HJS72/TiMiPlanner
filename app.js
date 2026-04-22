@@ -1025,6 +1025,7 @@ async function loadUpdateInfo({ force = false, render = true } = {}) {
   }
 
   appState.updateInfoLoading = (async () => {
+    const previousInfo = appState.updateInfo;
     try {
       const payload = await requestJson("/api/update/status", { method: "GET" });
       appState.updateInfo = normalizeUpdateInfo(payload);
@@ -1039,6 +1040,19 @@ async function loadUpdateInfo({ force = false, render = true } = {}) {
       if (!appState.updateInfo) {
         appState.updateInfo = getDefaultUpdateInfo();
       }
+
+      if (previousInfo && previousInfo.status && previousInfo.status.status === "running") {
+        appState.updateInfo = {
+          ...previousInfo,
+          status: {
+            ...previousInfo.status,
+            error: "",
+          },
+        };
+        scheduleUpdateStatusRefresh(6000);
+        return appState.updateInfo;
+      }
+
       appState.updateInfo.status.error = error.message || "Failed to load update status.";
       return appState.updateInfo;
     } finally {

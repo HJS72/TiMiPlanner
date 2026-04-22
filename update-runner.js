@@ -71,6 +71,23 @@ function resolveExtractedRoot(baseDir) {
   return baseDir;
 }
 
+function readFileIfExists(filePath) {
+  try {
+    return fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function shouldInstallDependencies(sourceRoot, targetRoot) {
+  const manifestFiles = ["package.json", "package-lock.json"];
+  return manifestFiles.some((fileName) => {
+    const sourceContent = readFileIfExists(path.join(sourceRoot, fileName));
+    const targetContent = readFileIfExists(path.join(targetRoot, fileName));
+    return sourceContent !== targetContent;
+  });
+}
+
 function copyDirectory(sourceDir, targetDir, relativeRoot = "") {
   const entries = fs.readdirSync(sourceDir, { withFileTypes: true });
   for (const entry of entries) {
@@ -199,6 +216,8 @@ async function main() {
     throw new Error("Uploaded archive does not look like a TiMiPlanner repository ZIP.");
   }
 
+  const needsDependencyInstall = shouldInstallDependencies(sourceRoot, projectRoot);
+
   writeStatus({
     status: "running",
     message: "Copying application files...",
@@ -206,12 +225,14 @@ async function main() {
   });
   copyDirectory(sourceRoot, projectRoot);
 
-  writeStatus({
-    status: "running",
-    message: "Installing npm dependencies...",
-    error: "",
-  });
-  runCommand("npm", ["install"]);
+  if (needsDependencyInstall) {
+    writeStatus({
+      status: "running",
+      message: "Installing npm dependencies...",
+      error: "",
+    });
+    runCommand("npm", ["install"]);
+  }
 
   writeStatus({
     status: "running",
