@@ -2043,7 +2043,8 @@ function isTaskInCurrentWeek(task) {
 function isTaskInWeek(task, referenceDate = new Date()) {
   if (!task) return false;
   const due = parseDate(task.dueDate);
-  if (!due) return false;
+  // Tasks with no dueDate (unscheduled) belong to the current week
+  if (!due) return referenceDate.toDateString() === new Date().toDateString();
 
   const scheduleDate = task.weekly === true ? due : getTaskScheduledDate(task, due);
   if (!scheduleDate) return false;
@@ -2583,7 +2584,7 @@ function renderShell(root) {
 
   // Context-aware toolbar buttons
   if (hasRole(appState.currentUser, "parent")) {
-    if (appState.selectedTask && !appState.selectedTask.isReadonly) {
+    if (appState.selectedTask && !appState.selectedTask.isReadonly && !isTaskScheduled(appState.selectedTask)) {
       const editBtn = createElement("button", {
         className: "button secondary compact-on-small",
         html: `${icon("edit")}<span class="button-label">${t("task.edit")}</span>`,
@@ -2890,13 +2891,18 @@ function renderDashboard(container) {
 
           const item = createElement("div", { className: "overview-task-item" });
           const title = createElement("span", { className: "overview-task-title", text: displayTitle });
+          const pointsText = count > 1 
+            ? `${t("task.each")} ${singlePoints} ${t("task.pointsShort")}`
+            : `${singlePoints} ${t("task.pointsShort")}`;
           const points = createElement("span", {
             className: "overview-task-points",
-            text: `${t("task.each")} ${singlePoints} ${t("task.pointsShort")}`,
+            text: pointsText,
           });
           item.appendChild(title);
           item.appendChild(points);
-          item.appendChild(makeTaskStatusCircleBtn(task, task.dueDate));
+          if (!options.hideStatusIcon) {
+            item.appendChild(makeTaskStatusCircleBtn(task, task.dueDate));
+          }
 
           const overviewTooltipParts = [displayTitle];
           if (task.description) overviewTooltipParts.push(task.description);
@@ -2934,7 +2940,7 @@ function renderDashboard(container) {
 
           const actions = createElement("div", { className: "overview-unscheduled-actions" });
           if (!task.isReadonly && (parentMode || canCurrentUserDeleteTask(task))) {
-            if (parentMode) {
+            if (parentMode && !options.hideEdit) {
               const edit = createElement("button", {
                 className: "button secondary overview-inline-button compact-on-small",
                 html: `${icon("edit")}<span class="button-label">${t("task.edit")}</span>`,
@@ -2978,10 +2984,11 @@ function renderDashboard(container) {
         acceptDrop: true,
         draggable: true,
         sectionKey: "unscheduled",
+        hideStatusIcon: true,
       }));
-      childPanel.appendChild(createTaskSection(t("dashboard.openTasks"), t("dashboard.noOpen"), openTasks, { sectionKey: "open" }));
-      childPanel.appendChild(createTaskSection(t("dashboard.doneTasks"), t("dashboard.noDone"), doneTasks, { sectionKey: "done" }));
-      childPanel.appendChild(createTaskSection(t("dashboard.confirmedTasks"), t("dashboard.noConfirmed"), confirmedTasks, { sectionKey: "confirmed" }));
+      childPanel.appendChild(createTaskSection(t("dashboard.openTasks"), t("dashboard.noOpen"), openTasks, { sectionKey: "open", hideEdit: true }));
+      childPanel.appendChild(createTaskSection(t("dashboard.doneTasks"), t("dashboard.noDone"), doneTasks, { sectionKey: "done", hideEdit: true }));
+      childPanel.appendChild(createTaskSection(t("dashboard.confirmedTasks"), t("dashboard.noConfirmed"), confirmedTasks, { sectionKey: "confirmed", hideEdit: true }));
 
       // Bonus section
       const bonusCollapsed = isSectionCollapsed(child.id, "bonuses");
@@ -3229,7 +3236,7 @@ function renderTaskCard(task, showActions = true) {
     card.appendChild(desc);
   }
 
-  if (showActions && !task.isReadonly && hasRole(appState.currentUser, "parent")) {
+  if (showActions && !task.isReadonly && hasRole(appState.currentUser, "parent") && !isTaskScheduled(task)) {
     const actions = createElement("div", { className: "task-card-actions" });
     const edit = createElement("button", {
       className: "button secondary compact-on-small",
@@ -3362,57 +3369,6 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   weeklyInput.checked = false;
   weeklyLabel.appendChild(weeklyInput);
 
-  const scheduleDaysLabel = createElement("label");
-  scheduleDaysLabel.innerHTML = `<span>${t("task.scheduleDays")}</span>`;
-  const weekdayWrap = createElement("div", {
-    attrs: {
-      style: "display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:0.5rem;",
-    },
-  });
-  const weekdayCheckboxes = [];
-  TASK_WEEKDAY_OPTIONS.forEach((dayIndex) => {
-    const dayLabel = createElement("label", {
-      attrs: {
-        style: "display:flex;align-items:center;gap:0.35rem;margin:0;",
-      },
-    });
-    const dayInput = createElement("input", {
-      className: "input-checkbox",
-      attrs: { type: "checkbox", value: String(dayIndex) },
-    });
-    const dayText = createElement("span", { text: getWeekdayLabel(dayIndex) });
-    dayLabel.appendChild(dayInput);
-    dayLabel.appendChild(dayText);
-    weekdayWrap.appendChild(dayLabel);
-    weekdayCheckboxes.push(dayInput);
-  });
-  scheduleDaysLabel.appendChild(weekdayWrap);
-
-  const startTimeLabel = createElement("label");
-  startTimeLabel.innerHTML = `<span>${t("task.startTime")}</span>`;
-  const startTimeInput = createElement("select", { className: "select", attrs: { name: "startTime" } });
-  const emptyOption = createElement("option", { text: "—", attrs: { value: "" } });
-  startTimeInput.appendChild(emptyOption);
-  for (let hour = 0; hour < 24; hour++) {
-    for (let minute = 0; minute < 60; minute += 5) {
-      const hour2 = String(hour).padStart(2, "0");
-      const min2 = String(minute).padStart(2, "0");
-      const timeStr = `${hour2}:${min2}`;
-      const opt = createElement("option", { text: timeStr, attrs: { value: timeStr } });
-      startTimeInput.appendChild(opt);
-    }
-  }
-  startTimeLabel.appendChild(startTimeInput);
-
-  const doneLabel = createElement("label");
-  doneLabel.innerHTML = `<span>${t("task.done")}</span>`;
-  const doneInput = createElement("input", {
-    className: "input-checkbox",
-    attrs: { type: "checkbox", name: "done" },
-  });
-  doneInput.checked = false;
-  doneLabel.appendChild(doneInput);
-
   const error = createElement("div", { className: "help" });
 
   const actions = createElement("div", { style: "display:flex;gap:0.75rem;flex-wrap:wrap;" });
@@ -3456,13 +3412,8 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   form.appendChild(assigneeLabel);
   form.appendChild(durationLabel);
   form.appendChild(pointsLabel);
-  if (!existingTask) {
-    form.appendChild(countLabel);
-  }
+  form.appendChild(countLabel);
   form.appendChild(weeklyLabel);
-  form.appendChild(scheduleDaysLabel);
-  form.appendChild(startTimeLabel);
-  form.appendChild(doneLabel);
   form.appendChild(error);
   form.appendChild(actions);
 
@@ -3474,14 +3425,8 @@ function buildTaskForm(existingTask = null, defaults = {}) {
     durationInput.value = String(getTaskDurationMinutes(existingTask));
     pointsInput.value = String(getTaskPoints(existingTask));
     weeklyInput.checked = existingTask.weekly === true;
-    doneInput.checked = isTaskConfirmed(existingTask);
-    const existingDue = parseDate(existingTask.dueDate);
-    if (existingDue && isTaskScheduled(existingTask)) {
-      const weekday = existingDue.getDay();
-      const matchingDay = weekdayCheckboxes.find((checkbox) => Number(checkbox.value) === weekday);
-      if (matchingDay) matchingDay.checked = true;
-      startTimeInput.value = `${String(existingDue.getHours()).padStart(2, "0")}:${String(existingDue.getMinutes()).padStart(2, "0")}`;
-    }
+    countInput.value = "1";
+    countInput.disabled = true;
   } else {
     if (defaults && defaults.assignedTo) {
       assigneeSelect.value = defaults.assignedTo;
@@ -3491,8 +3436,6 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   if (childMode) {
     assigneeSelect.value = appState.currentUser.id;
     assigneeSelect.disabled = true;
-    doneInput.checked = false;
-    doneInput.disabled = true;
   }
 
   form.addEventListener("submit", (event) => {
@@ -3503,19 +3446,6 @@ function buildTaskForm(existingTask = null, defaults = {}) {
     const durationMinutes = normalizeTaskDurationMinutes(durationInput.value, 30);
     const points = normalizeTaskPoints(pointsInput.value, 1);
     const taskCount = existingTask ? 1 : Math.min(7, Math.max(1, parseInt(countInput.value, 10) || 1));
-    const weekly = weeklyInput.checked;
-    const done = doneInput.checked;
-    const selectedDays = weekdayCheckboxes
-      .filter((checkbox) => checkbox.checked)
-      .map((checkbox) => Number(checkbox.value));
-    const startTime = startTimeInput.value;
-    const hasScheduledDays = selectedDays.length > 0;
-    const hasStartTime = !!startTime;
-
-    if ((hasScheduledDays && !hasStartTime) || (!hasScheduledDays && hasStartTime)) {
-      error.textContent = t("task.schedulePairError");
-      return;
-    }
 
     if (!title) {
       error.textContent = t("task.saveError");
@@ -3527,93 +3457,22 @@ function buildTaskForm(existingTask = null, defaults = {}) {
       return;
     }
 
-    const dueAnchor = getWeekAnchorDate(targetWeek);
-    const dueDate = existingTask && parseDate(existingTask.dueDate)
-      ? new Date(existingTask.dueDate)
-      : dueAnchor;
-
-    const scheduledDates = hasScheduledDays
-      ? selectedDays
-        .map((dayIndex) => getScheduledDateForWeekday(targetWeek, dayIndex, startTime))
-        .filter((date) => !!date)
-      : [];
-    const normalizedScheduledDates = existingTask ? scheduledDates.slice(0, 1) : scheduledDates;
-
-    const weeklyAssignments = (existingTask && existingTask.weeklyAssignments && typeof existingTask.weeklyAssignments === "object")
-      ? { ...existingTask.weeklyAssignments }
-      : {};
-
-    const weeklyAnchor = getCurrentWeekStart(dueDate);
-    weeklyAnchor.setHours(0, 0, 0, 0);
-
-    const getDueDateIso = (scheduledDate = null, baseDueDate = dueAnchor) => {
-      if (weekly) return weeklyAnchor.toISOString();
-      if (scheduledDate) return scheduledDate.toISOString();
-      return baseDueDate.toISOString();
-    };
-
-    const getScheduledMeta = (scheduledDate = null, baseDueDate = dueAnchor) => {
-      if (weekly) {
-        return {
-          scheduledDateKey: undefined,
-          scheduledTime: undefined,
-        };
-      }
-
-      const resolved = scheduledDate || baseDueDate;
-      if (!resolved) {
-        return {
-          scheduledDateKey: undefined,
-          scheduledTime: undefined,
-        };
-      }
-
-      return {
-        scheduledDateKey: formatLocalDateKey(resolved),
-        scheduledTime: `${String(resolved.getHours()).padStart(2, "0")}:${String(resolved.getMinutes()).padStart(2, "0")}`,
-      };
-    };
-
-    const getWeeklyAssignments = (scheduledDate = null, baseAssignments = weeklyAssignments) => {
-      if (!weekly) return undefined;
-      const nextAssignments = { ...baseAssignments };
-      if (scheduledDate) {
-        nextAssignments[getWeekKey(scheduledDate)] = scheduledDate.toISOString();
-      }
-      return nextAssignments;
-    };
-
-    const taskPayload = {
-      title,
-      description: descInput.value.trim(),
-      dueDate: getDueDateIso(),
-      ...getScheduledMeta(),
-      durationMinutes,
-      points,
-      targetWeek,
-      weekly,
-      weeklyAssignments: getWeeklyAssignments(),
-      completionStatus: done ? "confirmed" : "open",
-      done,
-      type: "regular",
-      isReadonly: false,
-    };
+    // Only unscheduled tasks can be edited
+    if (existingTask && isTaskScheduled(existingTask)) {
+      error.textContent = t("task.cannotEditScheduledTask");
+      return;
+    }
 
     const task = existingTask
       ? {
           ...existingTask,
           title,
           description: descInput.value.trim(),
-          dueDate: getDueDateIso(normalizedScheduledDates[0] || null, dueDate),
-          ...getScheduledMeta(normalizedScheduledDates[0] || null, dueDate),
           durationMinutes,
           points,
           targetWeek,
           assignedTo,
-          weekly,
-          weeklyAssignments: getWeeklyAssignments(normalizedScheduledDates[0] || null),
-          completionStatus: done ? "confirmed" : "open",
-          done,
+          weekly: weeklyInput.checked,
         }
       : {
           id: makeId("task"),
@@ -3621,15 +3480,16 @@ function buildTaskForm(existingTask = null, defaults = {}) {
           description: descInput.value.trim(),
           assignedTo,
           createdBy: appState.currentUser.id,
-          dueDate: getDueDateIso(),
-          ...getScheduledMeta(),
+          dueDate: null,
+          scheduledDateKey: undefined,
+          scheduledTime: undefined,
           durationMinutes,
           points,
           targetWeek,
-          weekly,
-          weeklyAssignments: getWeeklyAssignments(),
-          completionStatus: done ? "confirmed" : "open",
-          done,
+          weekly: false,
+          weeklyAssignments: undefined,
+          completionStatus: "open",
+          done: false,
           type: "regular",
           isReadonly: false,
         };
@@ -3642,38 +3502,8 @@ function buildTaskForm(existingTask = null, defaults = {}) {
       task.createdBy = appState.currentUser.id;
     }
 
-    if (!existingTask && !childMode && assignedTo === "all") {
-      const schedulingTargets = normalizedScheduledDates.length > 0 ? normalizedScheduledDates : [null];
-      getChildUsers().forEach((child) => {
-        schedulingTargets.forEach((scheduledDate) => {
-          for (let i = 0; i < taskCount; i += 1) {
-            saveTask({
-              ...taskPayload,
-              id: makeId("task"),
-              assignedTo: child.id,
-              createdBy: appState.currentUser.id,
-              dueDate: getDueDateIso(scheduledDate),
-              ...getScheduledMeta(scheduledDate),
-              weeklyAssignments: getWeeklyAssignments(scheduledDate, {}),
-            });
-          }
-        });
-      });
-    } else if (!existingTask && normalizedScheduledDates.length > 1) {
-      normalizedScheduledDates.forEach((scheduledDate) => {
-        for (let i = 0; i < taskCount; i += 1) {
-          saveTask({
-            ...taskPayload,
-            id: makeId("task"),
-            assignedTo,
-            createdBy: appState.currentUser.id,
-            dueDate: getDueDateIso(scheduledDate),
-            ...getScheduledMeta(scheduledDate),
-            weeklyAssignments: getWeeklyAssignments(scheduledDate, {}),
-          });
-        }
-      });
-    } else if (!existingTask && taskCount > 1) {
+    // Create multiple unscheduled tasks for non-parent-assigned tasks
+    if (!existingTask && taskCount > 1) {
       for (let i = 0; i < taskCount; i += 1) {
         saveTask({
           ...task,
@@ -3683,7 +3513,7 @@ function buildTaskForm(existingTask = null, defaults = {}) {
     } else {
       saveTask(task);
     }
-    setLastAction(existingTask ? "action.taskScheduled" : "action.taskAdded");
+    setLastAction(existingTask ? "action.taskEdited" : "action.taskAdded");
     overlay.remove();
     renderApp();
   });
@@ -4217,12 +4047,6 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
       calendarTooltipParts.push(`${assigneeName}`);
       const calendarTooltipText = calendarTooltipParts.join("\n");
       setTooltipIfTruncated(taskEl, text, calendarTooltipText);
-
-      taskEl.addEventListener("click", () => {
-        if (entry.task.isReadonly || !canEdit) return;
-        appState.selectedTask = entry.task;
-        buildTaskForm(entry.task);
-      });
 
       lane.appendChild(taskEl);
     });
