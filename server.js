@@ -34,7 +34,7 @@ function formatBuildVersion(date = new Date()) {
   const day = String(date.getDate()).padStart(2, "0");
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
-  return `0.${month}${day}.${hours}${minutes}`;
+  return `1.${month}${day}.${hours}${minutes}`;
 }
 
 const BUILD_VERSION = formatBuildVersion();
