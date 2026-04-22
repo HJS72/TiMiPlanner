@@ -12,6 +12,518 @@ let syncTimer = null;
 let syncPromise = null;
 let scheduledIntervalMinutes = null;
 
+function formatBuildVersion(date = new Date()) {
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `0.${month}${day}.${hours}${minutes}`;
+}
+
+const BUILD_VERSION = formatBuildVersion();
+
+const DEFAULT_APP_STATE = {
+  "locale": "en",
+  "users": [
+    {
+      "id": "parent-1",
+      "username": "parent",
+      "password": "parent",
+      "role": "parent",
+      "name": "Parent",
+      "locale": "de"
+    },
+    {
+      "id": "child-1",
+      "username": "lina",
+      "password": "lina",
+      "role": "child",
+      "name": "Lina",
+      "locale": "de",
+      "color": "#ffc7c7",
+      "avatar": "L",
+      "webcalUrl": "",
+      "webcalEnabled": true
+    },
+    {
+      "id": "child-2",
+      "username": "max",
+      "password": "max",
+      "role": "child",
+      "name": "Max",
+      "locale": "en",
+      "color": "#94cbff",
+      "avatar": "M",
+      "webcalUrl": "",
+      "webcalEnabled": true
+    }
+  ],
+  "sessions": {},
+  "tasks": [
+    {
+      "id": "task-62d79662d3ad719db405ccdc",
+      "title": "Flöte üben",
+      "description": "15 min. Flöte üben",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-992119ef481eb819db405ccdd",
+      "title": "Flöte üben",
+      "description": "15 min. Flöte üben",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-50eb7be733dce819db405ccdd",
+      "title": "Flöte üben",
+      "description": "15 min. Flöte üben",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-b81576eb3eda419db4065246",
+      "title": "Trompete üben",
+      "description": "15 min Trompete üben",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-b63906f6f5d87819db4065246",
+      "title": "Trompete üben",
+      "description": "15 min Trompete üben",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-7563c516804c719db4065246",
+      "title": "Trompete üben",
+      "description": "15 min Trompete üben",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-5e7d5774a04f819db41a8512",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-c525ee6f2087819db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-9c1c44a978fda19db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-397cbcbb72d9f819db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-5c75c37dc9b2519db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-add75cfa3b18c819db41a8513",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-0ab43a4da70fb19db41a8513",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-dd753affb0763819db41a8513",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-7783ab4a83494819db41a8514",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-b3ab0d92c10f419db41a8514",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-3b986252c9e6919db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-46e8ea2245d2d19db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-98a47f2ad8361819db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-6449be3d6160319db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-b05123c7585da19db41b64e3",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-5eceba1baaeb4819db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-79e7fb96e6cb119db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-74a909b4a08a719db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-13deb031bcd6f19db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-c66ad3d092071819db41b64e4",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    }
+  ],
+  "importedCalendars": [],
+  "bonusRedemptions": [],
+  "calendarSync": {
+    "intervalMinutes": 60,
+    "commonUrl": "",
+    "commonEnabled": true,
+    "lastSyncedAt": "2026-04-22T07:42:17.634Z",
+    "lastCount": 0,
+    "lastError": "",
+    "sourceCount": 0
+  },
+  "bonuses": [
+    {
+      "id": "bonus-1879d733dee67819db417b151",
+      "label": "15 min Switch",
+      "pointsRequired": 50,
+      "maxPerWeek": 2,
+      "assignedTo": "all",
+      "createdAt": "2026-04-22T07:29:04.849Z"
+    }
+  ]
+};
+
+function cloneState(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 app.use(express.json({ limit: "100kb" }));
 app.use(express.static(path.join(__dirname)));
 
@@ -70,7 +582,8 @@ function dbSaveState(value) {
 }
 
 function ensureDefaultUsersInState(state) {
-  const next = state && typeof state === "object" ? { ...state } : {};
+  const hasStateData = !!state && typeof state === "object" && Object.keys(state).length > 0;
+  const next = hasStateData ? { ...state } : cloneState(DEFAULT_APP_STATE);
   const rawUsers = Array.isArray(next.users) ? [...next.users] : [];
   const users = [];
   const seenUserIds = new Set();
@@ -130,8 +643,12 @@ function ensureDefaultUsersInState(state) {
   next.tasks = next.tasks.map((task) => {
     if (!task || typeof task !== "object") return task;
     const normalizedDuration = normalizeTaskDurationMinutes(task.durationMinutes, 30);
-    return { ...task, durationMinutes: normalizedDuration };
+    const normalizedPoints = normalizeTaskPoints(task.points, 1);
+    return { ...task, durationMinutes: normalizedDuration, points: normalizedPoints };
   });
+
+  if (!Array.isArray(next.bonuses)) next.bonuses = [];
+  if (!Array.isArray(next.bonusRedemptions)) next.bonusRedemptions = [];
 
   return next;
 }
@@ -141,6 +658,12 @@ function normalizeTaskDurationMinutes(value, fallback = 30) {
   if (!Number.isFinite(parsed)) return Math.max(15, fallback);
   const roundedToQuarter = Math.round(parsed / 15) * 15;
   return Math.max(15, roundedToQuarter);
+}
+
+function normalizeTaskPoints(value, fallback = 1) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return Math.max(1, Math.round(fallback));
+  return Math.max(1, Math.round(parsed));
 }
 
 function getNow() {
@@ -295,6 +818,7 @@ async function runWebcalSyncAndCleanup() {
               createdBy: "webcal",
               dueDate: ev.start.toISOString(),
               durationMinutes: normalizeTaskDurationMinutes(Math.max(15, durationRaw), 30),
+              points: 1,
               recurrence: "",
               type: "imported-webcal",
               isReadonly: true,
@@ -469,6 +993,10 @@ function fetchText(url, redirectsLeft = 5) {
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true });
+});
+
+app.get("/api/meta", (_req, res) => {
+  res.json({ ok: true, buildVersion: BUILD_VERSION });
 });
 
 app.get("/api/state", async (_req, res) => {

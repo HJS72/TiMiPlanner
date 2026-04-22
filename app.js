@@ -35,8 +35,26 @@ const translations = {
     "stats.childFilter": "Child",
     "stats.total": "Tasks",
     "stats.done": "Done",
+    "stats.collected": "Collected",
+    "stats.completed": "Done",
+    "stats.open": "Open",
+    "stats.pointsHistoryTitle": "Points history",
+    "stats.bonusHistoryTitle": "Bonus history",
+    "stats.weekRange": "Week",
+    "stats.noBonusAchieved": "No bonus achieved",
+    "stats.bonusAchievedCount": "{{count}} bonus achieved",
     "stats.weekOf": "Week of {{date}}",
     "stats.noData": "No tasks in selected period.",
+    "stats.currentDate": "Date",
+    "stats.currentWeek": "Week",
+    "stats.weekShort": "CW",
+    "stats.tasksChartTitle": "Tasks",
+    "stats.pointsChartTitle": "Points",
+    "stats.bonusTableTitle": "Bonus",
+    "stats.period": "Period",
+    "stats.child": "Child",
+    "stats.achievedBonus": "Achieved bonus",
+    "stats.redeemedBonus": "Redeemed",
 
     "dashboard.title": "Overview",
     "dashboard.tasks": "tasks",
@@ -53,6 +71,37 @@ const translations = {
     "dashboard.nextWeek": "Next week",
     "dashboard.childInfo": "Here is your weekly plan. You can see tasks assigned to you and check your calendar.",
     "dashboard.noTasksChild": "No tasks yet — ask your parents to add one!",
+    "dashboard.weekPointsSummary": "Points this week: {{collected}} collected, {{redeemed}} redeemed, {{available}} available",
+    "dashboard.openTasks": "Open",
+    "dashboard.noOpen": "No open tasks.",
+    "dashboard.bonusTitle": "Bonuses",
+    "dashboard.noBonus": "No bonuses set.",
+    "dashboard.bonusProgress": "{{current}} / {{required}} pts",
+    "dashboard.bonusAchieved": "Achieved!",
+
+    "bonus.createTitle": "New Bonus",
+    "bonus.editTitle": "Edit Bonus",
+    "bonus.label": "Reward",
+    "bonus.points": "Required points",
+    "bonus.assignedTo": "For",
+    "bonus.allChildren": "All children",
+    "bonus.save": "Save",
+    "bonus.cancel": "Cancel",
+    "bonus.delete": "Delete",
+    "bonus.deleteConfirm": "Delete this bonus?",
+    "bonus.saveError": "Please provide a title and a valid point value.",
+    "bonus.addBtn": "Add bonus",
+    "bonus.maxPerWeek": "Max. per week",
+    "bonus.redeem": "Redeem",
+    "bonus.redeemed": "Redeemed",
+    "bonus.release": "Release",
+    "bonus.releaseConfirm": "Release this redeemed bonus?",
+    "bonus.available": "Available: {{points}} pts",
+    "bonus.redeemedThisWeek": "Redeemed this week: {{count}}",
+    "dashboard.doneTasks": "Done",
+    "dashboard.confirmedTasks": "Confirmed",
+    "dashboard.noDone": "No done tasks yet.",
+    "dashboard.noConfirmed": "No confirmed tasks yet.",
 
     "tasks.title": "Tasks",
     "tasks.create": "New task",
@@ -68,10 +117,25 @@ const translations = {
     "task.durationMinError": "Duration must be at least 15 minutes.",
     "task.weekly": "Weekly",
     "task.done": "Done",
+    "task.doneByChild": "Done (child)",
+    "task.confirmed": "Confirmed",
+    "task.open": "Open",
+    "task.markDone": "Mark done",
+    "task.confirmFinal": "Confirm",
     "task.targetWeek": "Schedule in",
     "task.thisWeek": "This week",
     "task.nextWeek": "Next week",
+    "task.inTwoWeeks": "In two weeks",
+    "task.inThreeWeeks": "In three weeks",
+    "task.inFourWeeks": "In four weeks",
+    "task.count": "Quantity",
+    "task.points": "Points",
+    "task.pointsShort": "pts",
     "task.assignedTo": "Assigned to",
+    "task.allChildren": "All children",
+    "task.scheduleDays": "Weekdays",
+    "task.startTime": "Start time",
+    "task.schedulePairError": "Please select both weekdays and a start time, or leave both empty.",
     "task.save": "Save",
     "task.cancel": "Cancel",
     "task.edit": "Edit",
@@ -168,7 +232,7 @@ const translations = {
     "settings.connectionUnknown": "Not configured",
 
     "footer.help": "Tip: Use the settings page to import another calendar.",
-    "footer.version": "v0.9",
+    "footer.version": "Version {{version}}",
     "footer.screen": "Screen: {{size}}",
     "footer.lastAction": "Last action: {{action}}",
     "footer.lastActionNone": "No recent action",
@@ -178,7 +242,12 @@ const translations = {
     "action.taskUnscheduled": "Task moved to not scheduled",
     "action.taskDone": "Task marked as done",
     "action.taskUndone": "Task marked as not done",
+    "action.taskDoneByChild": "Task marked done by child",
+    "action.taskConfirmed": "Task confirmed by parent",
+    "action.taskReopened": "Task reopened",
     "action.taskDurationChanged": "Task changed duration to {{minutes}} min",
+    "action.bonusRedeemed": "Bonus redeemed",
+    "action.bonusReleased": "Redeemed bonus released",
   },
   de: {
     "login.title": "Willkommen zurück",
@@ -203,8 +272,26 @@ const translations = {
     "stats.childFilter": "Kind",
     "stats.total": "Aufgaben",
     "stats.done": "Erledigt",
+    "stats.collected": "Gesammelt",
+    "stats.completed": "Erledigt",
+    "stats.open": "Offen",
+    "stats.pointsHistoryTitle": "Punkte-Historie",
+    "stats.bonusHistoryTitle": "Bonus-Historie",
+    "stats.weekRange": "Woche",
+    "stats.noBonusAchieved": "Kein Bonus erreicht",
+    "stats.bonusAchievedCount": "{{count}} Bonus erreicht",
     "stats.weekOf": "Woche ab {{date}}",
     "stats.noData": "Keine Aufgaben im gewählten Zeitraum.",
+    "stats.currentDate": "Datum",
+    "stats.currentWeek": "KW",
+    "stats.weekShort": "KW",
+    "stats.tasksChartTitle": "Aufgaben",
+    "stats.pointsChartTitle": "Punkte",
+    "stats.bonusTableTitle": "Bonus",
+    "stats.period": "Zeitraum",
+    "stats.child": "Kind",
+    "stats.achievedBonus": "Erreichter Bonus",
+    "stats.redeemedBonus": "Eingelöst",
 
     "dashboard.title": "Übersicht",
     "dashboard.tasks": "Aufgaben",
@@ -221,6 +308,39 @@ const translations = {
     "dashboard.nextWeek": "Nächste Woche",
     "dashboard.childInfo": "Hier ist dein Wochenplan. Du siehst Aufgaben, die dir zugewiesen sind, und deinen Kalender.",
     "dashboard.noTasksChild": "Noch keine Aufgaben – bitte deine Eltern fügen etwas hinzu!",
+    "dashboard.weekPointsSummary": "Punkte diese Woche: {{collected}} gesammelt, {{redeemed}} eingelöst, {{available}} verfügbar",
+    "dashboard.openTasks": "Offene Aufgaben",
+    "dashboard.noOpen": "Keine offenen Aufgaben.",
+    "dashboard.doneTasks": "Erledigte Aufgaben",
+    "dashboard.confirmedTasks": "Bestätigte Aufgaben",
+    "dashboard.noDone": "Noch keine erledigten Aufgaben.",
+    "dashboard.noConfirmed": "Noch keine bestätigten Aufgaben.",
+    "dashboard.openTasks": "Offene Aufgaben",
+    "dashboard.noOpen": "Keine offenen Aufgaben.",
+    "dashboard.bonusTitle": "Bonuspunkte-Ziele",
+    "dashboard.noBonus": "Noch keine Bonusziele angelegt.",
+    "dashboard.bonusProgress": "{{current}} / {{required}} Pkt",
+    "dashboard.bonusAchieved": "Erreicht!",
+
+    "bonus.createTitle": "Neuer Bonus",
+    "bonus.editTitle": "Bonus bearbeiten",
+    "bonus.label": "Belohnung",
+    "bonus.points": "Benötigte Punkte",
+    "bonus.assignedTo": "Für",
+    "bonus.allChildren": "Alle Kinder",
+    "bonus.save": "Speichern",
+    "bonus.cancel": "Abbrechen",
+    "bonus.delete": "Löschen",
+    "bonus.deleteConfirm": "Diesen Bonus löschen?",
+    "bonus.saveError": "Bitte Titel und gültige Punktzahl angeben.",
+    "bonus.addBtn": "Bonus hinzufügen",
+    "bonus.maxPerWeek": "Max. pro Woche",
+    "bonus.redeem": "Einlösen",
+    "bonus.redeemed": "Eingelöst",
+    "bonus.release": "Freigeben",
+    "bonus.releaseConfirm": "Diesen eingelösten Bonus wieder freigeben?",
+    "bonus.available": "Verfügbar: {{points}} Pkt",
+    "bonus.redeemedThisWeek": "Diese Woche eingelöst: {{count}}",
 
     "tasks.title": "Aufgaben",
     "tasks.create": "Neue Aufgabe",
@@ -236,10 +356,25 @@ const translations = {
     "task.durationMinError": "Die Dauer muss mindestens 15 Minuten betragen.",
     "task.weekly": "Wöchentlich",
     "task.done": "Erledigt",
+    "task.doneByChild": "Erledigt (Kind)",
+    "task.confirmed": "Bestätigt",
+    "task.open": "Offen",
+    "task.markDone": "Als erledigt markieren",
+    "task.confirmFinal": "Final bestätigen",
     "task.targetWeek": "Einplanen in",
     "task.thisWeek": "Diese Woche",
     "task.nextWeek": "Nächste Woche",
+    "task.inTwoWeeks": "In zwei Wochen",
+    "task.inThreeWeeks": "In drei Wochen",
+    "task.inFourWeeks": "In vier Wochen",
+    "task.count": "Anzahl",
+    "task.points": "Punkte",
+    "task.pointsShort": "Pkt",
     "task.assignedTo": "Zugewiesen an",
+    "task.allChildren": "Alle Kinder",
+    "task.scheduleDays": "Wochentage",
+    "task.startTime": "Startzeit",
+    "task.schedulePairError": "Bitte wähle Wochentage und eine Startzeit aus oder lasse beides leer.",
     "task.save": "Speichern",
     "task.cancel": "Abbrechen",
     "task.edit": "Bearbeiten",
@@ -336,7 +471,7 @@ const translations = {
     "settings.connectionUnknown": "Nicht konfiguriert",
 
     "footer.help": "Tipp: Im Einstellungsbereich kannst du einen weiteren Kalender importieren.",
-    "footer.version": "v0.9",
+    "footer.version": "Version {{version}}",
     "footer.screen": "Bildschirm: {{size}}",
     "footer.lastAction": "Letzte Aktion: {{action}}",
     "footer.lastActionNone": "Keine letzte Aktion",
@@ -346,7 +481,12 @@ const translations = {
     "action.taskUnscheduled": "Aufgabe als nicht eingeplant markiert",
     "action.taskDone": "Aufgabe als erledigt markiert",
     "action.taskUndone": "Aufgabe als nicht erledigt markiert",
+    "action.taskDoneByChild": "Aufgabe vom Kind als erledigt markiert",
+    "action.taskConfirmed": "Aufgabe durch Elternteil bestätigt",
+    "action.taskReopened": "Aufgabe wieder geöffnet",
     "action.taskDurationChanged": "Aufgabendauer auf {{minutes}} min geandert",
+    "action.bonusRedeemed": "Bonus eingelöst",
+    "action.bonusReleased": "Eingelöster Bonus freigegeben",
   },
 };
 
@@ -397,8 +537,88 @@ function normalizeTaskDurationMinutes(value, fallback = 30) {
   return Math.max(15, roundedToQuarter);
 }
 
+function normalizeTaskPoints(value, fallback = 1) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return Math.max(1, Math.round(fallback));
+  return Math.max(1, Math.round(parsed));
+}
+
+function normalizeTaskCompletionStatus(value, fallback = "open") {
+  const allowed = ["open", "child_done", "confirmed"];
+  if (typeof value === "string" && allowed.includes(value)) {
+    return value;
+  }
+  return allowed.includes(fallback) ? fallback : "open";
+}
+
 function getTaskDurationMinutes(task) {
   return normalizeTaskDurationMinutes(task && task.durationMinutes, 30);
+}
+
+function getTaskPoints(task) {
+  return normalizeTaskPoints(task && task.points, 1);
+}
+
+function getTaskCompletionStatus(task) {
+  if (!task || typeof task !== "object") return "open";
+  const fallback = task.done === true ? "confirmed" : "open";
+  return normalizeTaskCompletionStatus(task.completionStatus, fallback);
+}
+
+function isTaskConfirmed(task) {
+  return getTaskCompletionStatus(task) === "confirmed";
+}
+
+function isTaskChildDone(task) {
+  return getTaskCompletionStatus(task) === "child_done";
+}
+
+function getTaskStatusLabel(task) {
+  if (isTaskConfirmed(task)) return t("task.confirmed");
+  if (isTaskChildDone(task)) return t("task.doneByChild");
+  return t("task.open");
+}
+
+function getTaskStatusIconName(task) {
+  if (isTaskConfirmed(task)) return "statusCircleConfirmed";
+  if (isTaskChildDone(task)) return "statusCircleDone";
+  return "statusCircle";
+}
+
+// Returns { iconName, cssClass, clickable } for the status circle button.
+function getTaskStatusCircleProps(task, due) {
+  const status = getTaskCompletionStatus(task);
+  if (status === "confirmed") {
+    return { iconName: "statusCircleConfirmed", cssClass: "scb-confirmed" };
+  }
+  if (status === "child_done") {
+    return { iconName: "statusCircleDone", cssClass: "scb-child-done" };
+  }
+  // open — distinguish future vs past/now
+  const dueDate = due instanceof Date ? due : parseDate(due || (task && task.dueDate));
+  const isFuture = dueDate && dueDate.getTime() > Date.now();
+  return { iconName: "statusCircle", cssClass: isFuture ? "scb-future" : "scb-past" };
+}
+
+function makeTaskStatusCircleBtn(task, due) {
+  const { iconName, cssClass } = getTaskStatusCircleProps(task, due);
+  const label = getTaskStatusLabel(task);
+  const canAct = !task.isReadonly && (canCurrentUserMarkTaskDone(task, due) || canCurrentUserConfirmTask(task, due));
+  const el = createElement(canAct ? "button" : "span", {
+    className: `task-status-circle-btn ${cssClass}`,
+    html: icon(iconName),
+    attrs: { title: label, "aria-label": label },
+  });
+  if (canAct) {
+    el.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!cycleTaskCompletionStatus(task, due)) return;
+      saveTask(task);
+      renderApp();
+    });
+  }
+  return el;
 }
 
 function formatDurationMinutes(minutes) {
@@ -410,6 +630,16 @@ function applyUserDefaults(data) {
 
   let childIndex = 0;
   let changed = false;
+
+  if (!Array.isArray(data.bonuses)) {
+    data.bonuses = [];
+    changed = true;
+  }
+
+  if (!Array.isArray(data.bonusRedemptions)) {
+    data.bonusRedemptions = [];
+    changed = true;
+  }
 
   if (!data.calendarSync || typeof data.calendarSync !== "object") {
     data.calendarSync = {
@@ -506,7 +736,11 @@ function applyUserDefaults(data) {
     data.tasks.forEach((task) => {
       if (!task || typeof task !== "object") return;
       let normalizedWeekly = task.weekly === true;
-      const normalizedDone = task.done === true;
+      const normalizedCompletionStatus = normalizeTaskCompletionStatus(
+        task.completionStatus,
+        task.done === true ? "confirmed" : "open"
+      );
+      const normalizedDone = normalizedCompletionStatus === "confirmed";
       if (Object.prototype.hasOwnProperty.call(task, "recurrence")) {
         if (task.recurrence === "weekly") {
           normalizedWeekly = true;
@@ -554,9 +788,18 @@ function applyUserDefaults(data) {
         task.done = normalizedDone;
         changed = true;
       }
+      if (task.completionStatus !== normalizedCompletionStatus) {
+        task.completionStatus = normalizedCompletionStatus;
+        changed = true;
+      }
       const normalizedDuration = normalizeTaskDurationMinutes(task.durationMinutes, 30);
       if (task.durationMinutes !== normalizedDuration) {
         task.durationMinutes = normalizedDuration;
+        changed = true;
+      }
+      const normalizedPoints = normalizeTaskPoints(task.points, 1);
+      if (task.points !== normalizedPoints) {
+        task.points = normalizedPoints;
         changed = true;
       }
     });
@@ -596,6 +839,21 @@ async function readStorageFromDatabase() {
     return { data: payload.data, updatedAt: payload.updatedAt || null };
   } catch (error) {
     console.warn("Database state read failed", error);
+    return null;
+  }
+}
+
+async function readAppMeta() {
+  try {
+    const response = await fetch("/api/meta", { method: "GET" });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    if (!payload || payload.ok !== true) {
+      return null;
+    }
+    return payload;
+  } catch (error) {
+    console.warn("App meta read failed", error);
     return null;
   }
 }
@@ -673,56 +931,502 @@ function writeStorage(value) {
 
 function initializeData() {
   const initial = {
-    locale: DEFAULT_LOCALE,
-    users: [
-      { id: "parent-1", username: "parent", password: "parent", role: "parent", name: "Parent", locale: DEFAULT_LOCALE },
-      { id: "child-1", username: "lina", password: "lina", role: "child", name: "Lina", locale: DEFAULT_LOCALE, color: "#3ba3d9", avatar: "L", webcalUrl: "", webcalEnabled: true },
-      { id: "child-2", username: "max", password: "max", role: "child", name: "Max", locale: DEFAULT_LOCALE, color: "#2ecc71", avatar: "M", webcalUrl: "", webcalEnabled: true },
-    ],
-    sessions: {
-      // sessionId: { userId }
+  "locale": "en",
+  "users": [
+    {
+      "id": "parent-1",
+      "username": "parent",
+      "password": "parent",
+      "role": "parent",
+      "name": "Parent",
+      "locale": "de"
     },
-    tasks: [
-      {
-        id: "task-1",
-        title: "Practice piano",
-        description: "At least 20 minutes of scales or a song.",
-        assignedTo: "child-1",
-        createdBy: "parent-1",
-        dueDate: new Date(new Date().setHours(18, 0, 0, 0)).toISOString(),
-        durationMinutes: 30,
-        weekly: false,
-        done: false,
-        type: "regular",
-        isReadonly: false,
-      },
-      {
-        id: "task-2",
-        title: "do laundry",
-        description: "",
-        assignedTo: "child-1",
-        createdBy: "parent-1",
-        dueDate: new Date(new Date().setHours(0, 0, 0, 0)).toISOString(),
-        durationMinutes: 30,
-        weekly: false,
-        done: false,
-        type: "regular",
-        isReadonly: false,
-      },
-    ],
-    importedCalendars: [
-      // { id, title, url, assignedTo, lastFetched, events: [] }
-    ],
-    calendarSync: {
-      intervalMinutes: 60,
-      commonUrl: "",
-      commonEnabled: true,
-      lastSyncedAt: null,
-      lastCount: 0,
-      lastError: "",
-      sourceCount: 0,
+    {
+      "id": "child-1",
+      "username": "lina",
+      "password": "lina",
+      "role": "child",
+      "name": "Lina",
+      "locale": "de",
+      "color": "#ffc7c7",
+      "avatar": "L",
+      "webcalUrl": "",
+      "webcalEnabled": true
     },
-  };
+    {
+      "id": "child-2",
+      "username": "max",
+      "password": "max",
+      "role": "child",
+      "name": "Max",
+      "locale": "en",
+      "color": "#94cbff",
+      "avatar": "M",
+      "webcalUrl": "",
+      "webcalEnabled": true
+    }
+  ],
+  "sessions": {},
+  "tasks": [
+    {
+      "id": "task-62d79662d3ad719db405ccdc",
+      "title": "Flöte üben",
+      "description": "15 min. Flöte üben",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-992119ef481eb819db405ccdd",
+      "title": "Flöte üben",
+      "description": "15 min. Flöte üben",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-50eb7be733dce819db405ccdd",
+      "title": "Flöte üben",
+      "description": "15 min. Flöte üben",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-b81576eb3eda419db4065246",
+      "title": "Trompete üben",
+      "description": "15 min Trompete üben",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-b63906f6f5d87819db4065246",
+      "title": "Trompete üben",
+      "description": "15 min Trompete üben",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "id": "task-7563c516804c719db4065246",
+      "title": "Trompete üben",
+      "description": "15 min Trompete üben",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 10,
+      "targetWeek": "current",
+      "weekly": false,
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-5e7d5774a04f819db41a8512",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-c525ee6f2087819db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-9c1c44a978fda19db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-397cbcbb72d9f819db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-5c75c37dc9b2519db41a8513",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-add75cfa3b18c819db41a8513",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-0ab43a4da70fb19db41a8513",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-dd753affb0763819db41a8513",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-7783ab4a83494819db41a8514",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "Tisch decken oder abräumen",
+      "description": "alleine Tisch decken oder abräumen (inkl. Spülmaschine einräumen)",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 5,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-b3ab0d92c10f419db41a8514",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-3b986252c9e6919db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-46e8ea2245d2d19db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-98a47f2ad8361819db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-6449be3d6160319db41b64e2",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-b05123c7585da19db41b64e3",
+      "assignedTo": "child-1",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-5eceba1baaeb4819db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-79e7fb96e6cb119db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-74a909b4a08a719db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-13deb031bcd6f19db41b64e3",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    },
+    {
+      "title": "In der Küche helfen",
+      "description": "z.B. beim Tischdecken, Abräumen, Kochen",
+      "dueDate": "2026-04-19T22:00:00.000Z",
+      "durationMinutes": 15,
+      "points": 2,
+      "targetWeek": "current",
+      "weekly": true,
+      "weeklyAssignments": {},
+      "completionStatus": "open",
+      "done": false,
+      "type": "regular",
+      "isReadonly": false,
+      "id": "task-c66ad3d092071819db41b64e4",
+      "assignedTo": "child-2",
+      "createdBy": "parent-1"
+    }
+  ],
+  "importedCalendars": [],
+  "bonusRedemptions": [],
+  "calendarSync": {
+    "intervalMinutes": 60,
+    "commonUrl": "",
+    "commonEnabled": true,
+    "lastSyncedAt": "2026-04-22T07:42:17.634Z",
+    "lastCount": 0,
+    "lastError": "",
+    "sourceCount": 0
+  },
+  "bonuses": [
+    {
+      "id": "bonus-1879d733dee67819db417b151",
+      "label": "15 min Switch",
+      "pointsRequired": 50,
+      "maxPerWeek": 2,
+      "assignedTo": "all",
+      "createdAt": "2026-04-22T07:29:04.849Z"
+    }
+  ]
+};
 
   const normalized = applyUserDefaults(initial);
   return normalized;
@@ -852,6 +1556,24 @@ const iconMap = {
       <path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5M17 16l4-4m0 0l-4-4m4 4H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   `,
+  statusCircle: `
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="8" fill="currentColor"/>
+    </svg>
+  `,
+  statusCircleDone: `
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="8" fill="currentColor"/>
+      <path d="M8 12l2.5 2.5L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  `,
+  statusCircleConfirmed: `
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="8" fill="currentColor"/>
+      <path d="M7.5 12l2.5 2.5L15.5 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M11.5 12l2.5 2.5 4-4.5" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  `,
   lock: `
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
@@ -896,6 +1618,53 @@ function parseDate(input) {
   return d;
 }
 
+function formatLocalDateKey(date) {
+  const d = new Date(date);
+  if (Number.isNaN(d.getTime())) return "";
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function parseLocalDateKey(dateKey) {
+  if (typeof dateKey !== "string") return null;
+  const match = dateKey.trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (!year || !month || !day) return null;
+  const d = new Date(year, month - 1, day, 0, 0, 0, 0);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
+function getTaskScheduledDate(task, fallbackDueDate = null) {
+  const fromKey = parseLocalDateKey(task && task.scheduledDateKey);
+  if (fromKey) return fromKey;
+  const due = fallbackDueDate || parseDate(task && task.dueDate);
+  if (!due) return null;
+  const normalized = new Date(due);
+  normalized.setHours(0, 0, 0, 0);
+  return normalized;
+}
+
+function getTaskScheduledMinutes(task, fallbackDueDate = null) {
+  const raw = task && typeof task.scheduledTime === "string" ? task.scheduledTime.trim() : "";
+  const match = raw.match(/^(\d{1,2}):(\d{2})$/);
+  if (match) {
+    const hours = Number(match[1]);
+    const minutes = Number(match[2]);
+    if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59) {
+      return (hours * 60) + minutes;
+    }
+  }
+
+  const due = fallbackDueDate || parseDate(task && task.dueDate);
+  if (!due) return null;
+  return (due.getHours() * 60) + due.getMinutes();
+}
+
 function isWebcalTask(task) {
   return !!task && (task.createdBy === "webcal" || task.type === "imported-webcal");
 }
@@ -912,9 +1681,81 @@ function getNextWeekStart(date = new Date()) {
   return start;
 }
 
+const TASK_WEEK_OPTIONS = ["current", "next", "next2", "next3", "next4"];
+const TASK_WEEKDAY_OPTIONS = [1, 2, 3, 4, 5, 6, 0];
+
+function getTargetWeekOffset(selection) {
+  switch (selection) {
+    case "next":
+      return 1;
+    case "next2":
+      return 2;
+    case "next3":
+      return 3;
+    case "next4":
+      return 4;
+    case "current":
+    default:
+      return 0;
+  }
+}
+
+function getTargetWeekSelectionForDate(date) {
+  const due = parseDate(date);
+  if (!due) return "current";
+  const weekStartMs = getCurrentWeekStart(due).getTime();
+  const currentWeekStartMs = getCurrentWeekStart().getTime();
+  const diffWeeks = Math.round((weekStartMs - currentWeekStartMs) / (7 * 24 * 60 * 60 * 1000));
+
+  if (diffWeeks <= 0) return "current";
+  if (diffWeeks >= 4) return "next4";
+  return TASK_WEEK_OPTIONS[diffWeeks] || "current";
+}
+
+function getTaskWeekLabelKey(selection) {
+  switch (selection) {
+    case "next":
+      return "task.nextWeek";
+    case "next2":
+      return "task.inTwoWeeks";
+    case "next3":
+      return "task.inThreeWeeks";
+    case "next4":
+      return "task.inFourWeeks";
+    case "current":
+    default:
+      return "task.thisWeek";
+  }
+}
+
 function getWeekAnchorDate(selection) {
-  const start = selection === "next" ? getNextWeekStart() : getCurrentWeekStart();
+  const start = getCurrentWeekStart();
+  start.setDate(start.getDate() + (getTargetWeekOffset(selection) * 7));
   return start;
+}
+
+function getWeekdayOffsetFromMonday(dayIndex) {
+  return dayIndex === 0 ? 6 : dayIndex - 1;
+}
+
+function getWeekdayLabel(dayIndex) {
+  const base = getCurrentWeekStart();
+  const dayDate = new Date(base);
+  dayDate.setDate(base.getDate() + getWeekdayOffsetFromMonday(dayIndex));
+  return new Intl.DateTimeFormat(appState.locale, { weekday: "short" }).format(dayDate);
+}
+
+function getScheduledDateForWeekday(targetWeek, dayIndex, startTime) {
+  if (!startTime || typeof startTime !== "string") return null;
+  const [hourRaw, minuteRaw] = startTime.split(":");
+  const hour = Number(hourRaw);
+  const minute = Number(minuteRaw);
+  if (!Number.isFinite(hour) || !Number.isFinite(minute)) return null;
+
+  const dueDate = getWeekAnchorDate(targetWeek);
+  dueDate.setDate(dueDate.getDate() + getWeekdayOffsetFromMonday(dayIndex));
+  dueDate.setHours(hour, minute, 0, 0);
+  return dueDate;
 }
 
 function getStatisticsRangeStart(range) {
@@ -954,7 +1795,7 @@ function isTaskInWeekForStats(task, weekStart) {
 }
 
 function isTaskDoneInWeekForStats(task, weekStart) {
-  if (!task || task.done !== true || !weekStart) return false;
+  if (!task || !isTaskConfirmed(task) || !weekStart) return false;
   if (task.weekly === true) {
     return !!getWeeklyAssignmentDate(task, weekStart);
   }
@@ -994,20 +1835,11 @@ function clearWeeklyAssignmentDate(task, referenceDate) {
 }
 
 function getTaskWeekSelection(task) {
-  if (task && (task.targetWeek === "current" || task.targetWeek === "next")) {
+  if (task && TASK_WEEK_OPTIONS.includes(task.targetWeek)) {
     return task.targetWeek;
   }
 
-  const due = parseDate(task && task.dueDate);
-  if (!due) return "current";
-
-  const weekStart = getCurrentWeekStart(due).getTime();
-  const currentWeekStart = getCurrentWeekStart().getTime();
-  const nextWeekStart = getNextWeekStart().getTime();
-
-  if (weekStart === nextWeekStart) return "next";
-  if (weekStart === currentWeekStart) return "current";
-  return due > getNextWeekStart() ? "next" : "current";
+  return getTargetWeekSelectionForDate(task && task.dueDate);
 }
 
 function isTaskInCurrentWeek(task) {
@@ -1019,7 +1851,9 @@ function isTaskInWeek(task, referenceDate = new Date()) {
   const due = parseDate(task.dueDate);
   if (!due) return false;
 
-  const dueWeekStart = getCurrentWeekStart(due).getTime();
+  const scheduleDate = task.weekly === true ? due : getTaskScheduledDate(task, due);
+  if (!scheduleDate) return false;
+  const dueWeekStart = getCurrentWeekStart(scheduleDate).getTime();
   const referenceWeekStart = getCurrentWeekStart(referenceDate).getTime();
   if (task.weekly === true) {
     return referenceWeekStart >= dueWeekStart;
@@ -1051,21 +1885,84 @@ function getTaskOccurrenceForDate(task, date) {
   // Unscheduled tasks (00:00) belong only in the not-scheduled list.
   if (!isTaskScheduled(task)) return null;
 
-  return due.toDateString() === date.toDateString() ? due : null;
+  const scheduledDate = getTaskScheduledDate(task, due);
+  if (!scheduledDate || formatLocalDateKey(scheduledDate) !== formatLocalDateKey(date)) return null;
+
+  const scheduledMinutes = getTaskScheduledMinutes(task, due);
+  if (scheduledMinutes == null) return null;
+  const occurrence = new Date(date);
+  occurrence.setHours(Math.floor(scheduledMinutes / 60), scheduledMinutes % 60, 0, 0);
+  return occurrence;
 }
 
 function isTaskScheduled(task) {
   if (isWebcalTask(task)) return true;
+  if (getTaskScheduledMinutes(task) != null && typeof task?.scheduledTime === "string" && task.scheduledTime.trim()) {
+    return true;
+  }
   const due = parseDate(task && task.dueDate);
   if (!due) return false;
   return due.getHours() !== 0 || due.getMinutes() !== 0 || due.getSeconds() !== 0 || due.getMilliseconds() !== 0;
 }
 
-function canToggleTaskDone(task, referenceDate = null) {
-  if (!task || task.isReadonly) return false;
+function canUpdateTaskCompletionStatus(task, referenceDate = null) {
+  if (!task || task.isReadonly || !appState.currentUser) return false;
   const due = referenceDate instanceof Date ? referenceDate : parseDate(referenceDate || task.dueDate);
   if (!due) return false;
   return due.getTime() <= Date.now();
+}
+
+function canCurrentUserMarkTaskDone(task, referenceDate = null) {
+  if (!canUpdateTaskCompletionStatus(task, referenceDate)) return false;
+  if (hasRole(appState.currentUser, "parent")) return true;
+  return hasRole(appState.currentUser, "child") && task.assignedTo === appState.currentUser.id;
+}
+
+function canCurrentUserConfirmTask(task, referenceDate = null) {
+  if (!canUpdateTaskCompletionStatus(task, referenceDate)) return false;
+  return hasRole(appState.currentUser, "parent");
+}
+
+function setTaskCompletionStatus(task, status) {
+  if (!task) return;
+  const normalized = normalizeTaskCompletionStatus(status, "open");
+  task.completionStatus = normalized;
+  task.done = normalized === "confirmed";
+}
+
+function cycleTaskCompletionStatus(task, referenceDate = null) {
+  if (!task) return false;
+  const current = getTaskCompletionStatus(task);
+
+  if (current === "open") {
+    if (!canCurrentUserMarkTaskDone(task, referenceDate)) return false;
+    setTaskCompletionStatus(task, hasRole(appState.currentUser, "parent") ? "confirmed" : "child_done");
+    setLastAction(hasRole(appState.currentUser, "parent") ? "action.taskConfirmed" : "action.taskDoneByChild");
+    return true;
+  }
+
+  if (current === "child_done") {
+    if (canCurrentUserConfirmTask(task, referenceDate)) {
+      setTaskCompletionStatus(task, "confirmed");
+      setLastAction("action.taskConfirmed");
+      return true;
+    }
+    if (hasRole(appState.currentUser, "child") && task.assignedTo === appState.currentUser.id && canCurrentUserMarkTaskDone(task, referenceDate)) {
+      setTaskCompletionStatus(task, "open");
+      setLastAction("action.taskReopened");
+      return true;
+    }
+    return false;
+  }
+
+  if (current === "confirmed") {
+    if (!canCurrentUserConfirmTask(task, referenceDate)) return false;
+    setTaskCompletionStatus(task, "open");
+    setLastAction("action.taskReopened");
+    return true;
+  }
+
+  return false;
 }
 
 function isTaskCreatedByParent(task) {
@@ -1112,6 +2009,20 @@ function formatDayMonth(date) {
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
   return `${day}.${month}`;
+}
+
+function getCalendarWeekNumber(date) {
+  if (!date) return 0;
+  const target = new Date(date);
+  target.setHours(0, 0, 0, 0);
+  target.setDate(target.getDate() + 3 - ((target.getDay() + 6) % 7));
+  const week1 = new Date(target.getFullYear(), 0, 4);
+  week1.setHours(0, 0, 0, 0);
+  return 1 + Math.round(((target.getTime() - week1.getTime()) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
+}
+
+function formatCalendarWeek(date) {
+  return `${t("stats.weekShort")} ${getCalendarWeekNumber(date)}`;
 }
 
 function formatTime(date) {
@@ -1189,6 +2100,115 @@ function getTasksForUser(user) {
   if (hasRole(user, "parent")) return storage.tasks;
   return storage.tasks.filter((task) => task.assignedTo === user.id);
 }
+
+// --- Bonus CRUD + helpers -------------------------------------------------------
+
+function getBonuses() {
+  if (!Array.isArray(storage.bonuses)) storage.bonuses = [];
+  return storage.bonuses;
+}
+
+function getBonusesForChild(childId) {
+  return getBonuses().filter((b) => b.assignedTo === "all" || b.assignedTo === childId);
+}
+
+function getBonusRedemptions() {
+  if (!Array.isArray(storage.bonusRedemptions)) storage.bonusRedemptions = [];
+  return storage.bonusRedemptions;
+}
+
+function getBonusRedemptionsForChildWeek(childId, referenceDate = new Date()) {
+  const weekKey = getWeekKey(referenceDate);
+  return getBonusRedemptions().filter((entry) => entry.childId === childId && entry.weekKey === weekKey);
+}
+
+function getWeeklyRedeemedPoints(childId, referenceDate = new Date()) {
+  return getBonusRedemptionsForChildWeek(childId, referenceDate)
+    .reduce((sum, entry) => sum + normalizeTaskPoints(entry.pointsSpent, 0), 0);
+}
+
+function getWeeklyAvailableBonusPoints(childId, referenceDate = new Date()) {
+  const confirmed = getWeeklyConfirmedPoints(childId, referenceDate);
+  const redeemed = getWeeklyRedeemedPoints(childId, referenceDate);
+  return Math.max(0, confirmed - redeemed);
+}
+
+function getBonusRedeemCountForChildWeek(childId, bonusId, referenceDate = new Date()) {
+  return getBonusRedemptionsForChildWeek(childId, referenceDate)
+    .filter((entry) => entry.bonusId === bonusId)
+    .length;
+}
+
+function getBonusMaxPerWeek(bonus) {
+  const parsed = parseInt(bonus?.maxPerWeek, 10);
+  if (!Number.isFinite(parsed)) return 1;
+  return Math.min(5, Math.max(1, parsed));
+}
+
+function redeemBonusForChild(bonus, childId, referenceDate = new Date()) {
+  if (!bonus || !childId || !hasRole(appState.currentUser, "parent")) return false;
+  const maxPerWeek = getBonusMaxPerWeek(bonus);
+  const redeemedCount = getBonusRedeemCountForChildWeek(childId, bonus.id, referenceDate);
+  if (redeemedCount >= maxPerWeek) return false;
+  const available = getWeeklyAvailableBonusPoints(childId, referenceDate);
+  if (available < bonus.pointsRequired) return false;
+  getBonusRedemptions().push({
+    id: makeId("redeem"),
+    bonusId: bonus.id,
+    childId,
+    weekKey: getWeekKey(referenceDate),
+    pointsSpent: normalizeTaskPoints(bonus.pointsRequired, 1),
+    redeemedAt: nowISO(),
+    labelSnapshot: bonus.label,
+  });
+  setLastAction("action.bonusRedeemed");
+  writeStorage(storage);
+  return true;
+}
+
+function releaseRedeemedBonus(entry) {
+  if (!entry || !hasRole(appState.currentUser, "parent")) return false;
+  const redemptions = getBonusRedemptions();
+  const idxById = entry.id ? redemptions.findIndex((item) => item.id === entry.id) : -1;
+  const idx = idxById >= 0
+    ? idxById
+    : redemptions.findIndex((item) => (
+      item.bonusId === entry.bonusId
+      && item.childId === entry.childId
+      && item.weekKey === entry.weekKey
+      && item.redeemedAt === entry.redeemedAt
+    ));
+  if (idx < 0) return false;
+  redemptions.splice(idx, 1);
+  setLastAction("action.bonusReleased");
+  writeStorage(storage);
+  return true;
+}
+
+function saveBonus(bonus) {
+  if (!Array.isArray(storage.bonuses)) storage.bonuses = [];
+  const idx = storage.bonuses.findIndex((b) => b.id === bonus.id);
+  if (idx >= 0) {
+    storage.bonuses[idx] = bonus;
+  } else {
+    storage.bonuses.push(bonus);
+  }
+  writeStorage(storage);
+}
+
+function deleteBonus(bonusId) {
+  if (!Array.isArray(storage.bonuses)) return;
+  storage.bonuses = storage.bonuses.filter((b) => b.id !== bonusId);
+  writeStorage(storage);
+}
+
+// Returns confirmed points for a child in the week containing referenceDate.
+function getWeeklyConfirmedPoints(childId, referenceDate = new Date()) {
+  return storage.tasks
+    .filter((task) => task.assignedTo === childId && isTaskConfirmed(task) && isTaskInWeek(task, referenceDate))
+    .reduce((sum, task) => sum + getTaskPoints(task), 0);
+}
+
 
 function getChildUsers() {
   return storage.users.filter((u) => u.role === "child");
@@ -1278,7 +2298,7 @@ function clear(root) {
 function setTooltipIfTruncated(containerEl, textEl, tooltipText) {
   requestAnimationFrame(() => {
     if (!containerEl) return;
-    containerEl.setAttribute("title", tooltipText);
+    containerEl.setAttribute("data-tooltip", tooltipText);
   });
 }
 
@@ -1457,6 +2477,10 @@ function renderShell(root) {
   const content = createElement("main", { className: "content" });
 
   if (appState.currentTab === "dashboard") {
+    content.classList.add("dashboard-mode");
+  }
+
+  if (appState.currentTab === "dashboard") {
     renderDashboard(content);
   } else if (appState.currentTab === "statistics") {
     renderStatistics(content);
@@ -1468,7 +2492,7 @@ function renderShell(root) {
   root.appendChild(content);
 
   const footer = createElement("footer", { className: "footer" });
-  footer.innerHTML = `<span>${t("footer.lastAction", { action: getLastActionLabel() })}</span><span>${t("footer.screen", { size: getScreenSizeLabel() })}</span><span>${t("footer.version")}</span>`;
+  footer.innerHTML = `<span>${t("footer.lastAction", { action: getLastActionLabel() })}</span><span>${t("footer.screen", { size: getScreenSizeLabel() })}</span><span>${t("footer.version", { version: appState.buildVersion })}</span>`;
   root.appendChild(footer);
 }
 
@@ -1537,15 +2561,26 @@ function renderLogin() {
 }
 
 function renderDashboard(container) {
-  const panel = createElement("section", { className: "panel dashboard-panel" });
-  panel.appendChild(createElement("h2", { text: t("dashboard.title") }));
+  const panel = createElement("section", { className: "dashboard-panel" });
+  const dashboardScroll = createElement("div", { className: "dashboard-scroll" });
 
   const user = appState.currentUser;
   if (hasRole(user, "parent") || hasRole(user, "child")) {
     const parentMode = hasRole(user, "parent");
     const children = parentMode ? getChildUsers() : [user];
     const weekReferenceDate = parseDate(appState.calendarDate) || new Date();
-    const overview = createElement("div", { className: "grid grid-2" });
+    if (!appState.overviewCollapsed || typeof appState.overviewCollapsed !== "object") {
+      appState.overviewCollapsed = {};
+    }
+    const getSectionStateKey = (childId, sectionKey) => `${childId}:${sectionKey}`;
+    const isSectionCollapsed = (childId, sectionKey) => !!appState.overviewCollapsed[getSectionStateKey(childId, sectionKey)];
+    const toggleSectionCollapsed = (childId, sectionKey) => {
+      const stateKey = getSectionStateKey(childId, sectionKey);
+      appState.overviewCollapsed[stateKey] = !appState.overviewCollapsed[stateKey];
+      renderApp();
+    };
+
+    const overview = createElement("div", { className: "grid grid-2 overview-grid" });
 
     children.forEach((child) => {
       const childPanel = createElement("div", { className: "task" });
@@ -1558,17 +2593,17 @@ function renderDashboard(container) {
       const heading = createElement("h3", { text: child.name });
       const tasks = storage.tasks.filter((t) => t.assignedTo === child.id);
       const weeklyTasks = tasks.filter((task) => isTaskInWeek(task, weekReferenceDate));
-      const weeklyDone = weeklyTasks.filter((task) => task.done === true).length;
-      const stats = createElement("span", { className: "overview-child-stats", text: `${weeklyTasks.length} / ${weeklyDone}` });
+      const collectedPoints = weeklyTasks
+        .filter((task) => isTaskConfirmed(task))
+        .reduce((sum, task) => sum + getTaskPoints(task), 0);
+      const redeemedPoints = getWeeklyRedeemedPoints(child.id, weekReferenceDate);
+      const availablePoints = getWeeklyAvailableBonusPoints(child.id, weekReferenceDate);
 
-      const unscheduledTasks = tasks.filter((task) => !isTaskScheduledInWeek(task, weekReferenceDate) && isTaskInWeek(task, weekReferenceDate));
-      const unscheduledDropZone = createElement("div", { className: "overview-unscheduled-dropzone" });
-      if (parentMode || hasRole(user, "child")) {
-        unscheduledDropZone.addEventListener("dragover", (event) => {
-          event.preventDefault();
-        });
-        unscheduledDropZone.addEventListener("drop", (event) => handleDropToUnscheduled(event, child.id));
-      }
+      const unscheduledTasks = weeklyTasks.filter((task) => !isTaskScheduledInWeek(task, weekReferenceDate));
+      const scheduledWeeklyTasks = weeklyTasks.filter((task) => isTaskScheduledInWeek(task, weekReferenceDate));
+      const openTasks = scheduledWeeklyTasks.filter((task) => getTaskCompletionStatus(task) === "open");
+      const doneTasks = scheduledWeeklyTasks.filter((task) => isTaskChildDone(task));
+      const confirmedTasks = scheduledWeeklyTasks.filter((task) => isTaskConfirmed(task));
 
       const badgeDiv = createElement("div", { className: "overview-child-actions" });
       const unscheduledBadge = createElement("span", { className: "badge", text: `${unscheduledTasks.length} ${t("dashboard.unscheduledTasks")}` });
@@ -1586,51 +2621,96 @@ function renderDashboard(container) {
         badgeDiv.appendChild(addTaskBtn);
       }
 
+      if (parentMode) {
+        const addBonusBtn = createElement("button", {
+          className: "button secondary overview-inline-button compact-on-small",
+          html: `${icon("add")}<span class="button-label">${t("bonus.addBtn")}</span>`,
+          attrs: { "aria-label": t("bonus.addBtn"), title: t("bonus.addBtn") },
+        });
+        addBonusBtn.addEventListener("click", () => buildBonusForm(null, { assignedTo: child.id }));
+        badgeDiv.appendChild(addBonusBtn);
+      }
+
       titleWrap.appendChild(heading);
-      titleWrap.appendChild(stats);
       headerRow.appendChild(titleWrap);
       headerRow.appendChild(badgeDiv);
 
       childPanel.appendChild(headerRow);
 
-      if (unscheduledTasks.length > 0) {
+      function createTaskSection(titleText, emptyText, sectionTasks, options = {}) {
+        const sectionKey = options.sectionKey || "section";
+        const collapsed = isSectionCollapsed(child.id, sectionKey);
+        const section = createElement("div", { className: "overview-unscheduled-dropzone" });
+        const sectionHeader = createElement("button", {
+          className: "overview-section-title overview-section-toggle",
+          attrs: { type: "button", "aria-expanded": String(!collapsed) },
+        });
+        sectionHeader.appendChild(createElement("span", { text: titleText }));
+        sectionHeader.appendChild(createElement("span", { className: "overview-section-count", text: String(sectionTasks.length) }));
+        sectionHeader.appendChild(createElement("span", { className: "overview-section-caret", text: collapsed ? "+" : "-" }));
+        sectionHeader.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          toggleSectionCollapsed(child.id, sectionKey);
+        });
+        section.appendChild(sectionHeader);
+
+        if (options.acceptDrop) {
+          section.addEventListener("dragover", (event) => {
+            event.preventDefault();
+          });
+          section.addEventListener("drop", (event) => handleDropToUnscheduled(event, child.id));
+        }
+
+        if (collapsed) {
+          section.classList.add("collapsed");
+          return section;
+        }
+
+        if (sectionTasks.length === 0) {
+          section.appendChild(createElement("div", { className: "help", text: emptyText }));
+          return section;
+        }
+
         const list = createElement("div", { className: "overview-unscheduled-table" });
-        unscheduledTasks.forEach((task) => {
+        sectionTasks.forEach((task) => {
           const item = createElement("div", { className: "overview-task-item" });
           const title = createElement("span", { className: "overview-task-title", text: task.title });
+          const points = createElement("span", {
+            className: "overview-task-points",
+            text: `${getTaskPoints(task)} ${t("task.pointsShort")}`,
+          });
           item.appendChild(title);
+          item.appendChild(points);
+          item.appendChild(makeTaskStatusCircleBtn(task, task.dueDate));
 
-          const actions = createElement("div", { className: "overview-unscheduled-actions" });
+          const overviewTooltipParts = [task.title];
+          if (task.description) overviewTooltipParts.push(task.description);
+          overviewTooltipParts.push(`${t("task.durationShort")}: ${formatDurationMinutes(getTaskDurationMinutes(task))}`);
+          overviewTooltipParts.push(`${t("task.points")}: ${getTaskPoints(task)}`);
+          const infoBtn = createElement("button", {
+            className: "overview-tooltip-btn",
+            text: "?",
+            attrs: {
+              type: "button",
+              "aria-label": t("task.details"),
+              "data-tooltip": overviewTooltipParts.join("\n"),
+            },
+          });
+          infoBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+          });
+          item.appendChild(infoBtn);
 
-          let doneLabel = null;
-
-          if (canToggleTaskDone(task)) {
-            doneLabel = createElement("label", { className: "task-done-toggle" });
-            const doneInput = createElement("input", {
-              className: "input-checkbox",
-              attrs: { type: "checkbox", "aria-label": t("task.done") },
-            });
-            doneInput.checked = task.done === true;
-            doneInput.addEventListener("click", (event) => {
-              event.stopPropagation();
-            });
-            doneInput.addEventListener("change", () => {
-              task.done = doneInput.checked;
-              saveTask(task);
-              setLastAction(doneInput.checked ? "action.taskDone" : "action.taskUndone");
-              renderApp();
-            });
-            doneLabel.appendChild(doneInput);
-            doneLabel.appendChild(createElement("span", { text: t("task.done") }));
-          }
-
-          if (!task.isReadonly && (parentMode || canCurrentUserScheduleTask(task))) {
+          if (options.draggable && !task.isReadonly && (parentMode || canCurrentUserScheduleTask(task))) {
             item.setAttribute("draggable", "true");
             item.addEventListener("dragstart", (event) => {
               event.dataTransfer.setData("text/plain", task.id);
             });
           }
 
+          const actions = createElement("div", { className: "overview-unscheduled-actions" });
           if (!task.isReadonly && (parentMode || canCurrentUserDeleteTask(task))) {
             if (parentMode) {
               const edit = createElement("button", {
@@ -1658,7 +2738,6 @@ function renderDashboard(container) {
               deleteTask(task.id);
               renderApp();
             });
-
             actions.appendChild(del);
           }
 
@@ -1666,37 +2745,193 @@ function renderDashboard(container) {
             actions.classList.add("empty");
           }
           item.appendChild(actions);
-
-          if (task.isReadonly) {
-            item.appendChild(createReadonlyLock());
-          }
-
-          if (doneLabel) {
-            item.appendChild(doneLabel);
-          }
           list.appendChild(item);
         });
-        unscheduledDropZone.appendChild(list);
-      } else {
-        const none = createElement("div", { className: "help", text: t("dashboard.noUnscheduled") });
-        unscheduledDropZone.appendChild(none);
+
+        section.appendChild(list);
+        return section;
       }
 
-      childPanel.appendChild(unscheduledDropZone);
+      childPanel.appendChild(createTaskSection(t("dashboard.unscheduledTasks"), t("dashboard.noUnscheduled"), unscheduledTasks, {
+        acceptDrop: true,
+        draggable: true,
+        sectionKey: "unscheduled",
+      }));
+      childPanel.appendChild(createTaskSection(t("dashboard.openTasks"), t("dashboard.noOpen"), openTasks, { sectionKey: "open" }));
+      childPanel.appendChild(createTaskSection(t("dashboard.doneTasks"), t("dashboard.noDone"), doneTasks, { sectionKey: "done" }));
+      childPanel.appendChild(createTaskSection(t("dashboard.confirmedTasks"), t("dashboard.noConfirmed"), confirmedTasks, { sectionKey: "confirmed" }));
+
+      // Bonus section
+      const bonusCollapsed = isSectionCollapsed(child.id, "bonuses");
+      const bonusSection = createElement("div", { className: "overview-unscheduled-dropzone bonus-section" });
+      const childBonuses = getBonusesForChild(child.id);
+      const bonusHeaderRow = createElement("div", { className: "overview-section-header" });
+      const bonusHeader = createElement("button", {
+        className: "overview-section-title overview-section-toggle",
+        attrs: { type: "button", "aria-expanded": String(!bonusCollapsed) },
+      });
+      bonusHeader.appendChild(createElement("span", { text: t("dashboard.bonusTitle") }));
+      bonusHeader.appendChild(createElement("span", {
+        className: "overview-child-points overview-child-points-inline",
+        text: t("dashboard.weekPointsSummary", {
+          collected: String(collectedPoints),
+          redeemed: String(redeemedPoints),
+          available: String(availablePoints),
+        }),
+      }));
+      bonusHeader.appendChild(createElement("span", { className: "overview-section-count", text: String(childBonuses.length) }));
+      bonusHeader.appendChild(createElement("span", { className: "overview-section-caret", text: bonusCollapsed ? "+" : "-" }));
+      bonusHeader.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleSectionCollapsed(child.id, "bonuses");
+      });
+      bonusHeaderRow.appendChild(bonusHeader);
+      bonusSection.appendChild(bonusHeaderRow);
+
+      if (!bonusCollapsed) {
+        if (childBonuses.length === 0) {
+          bonusSection.appendChild(createElement("div", { className: "help", text: t("dashboard.noBonus") }));
+        } else {
+          const bonusList = createElement("div", { className: "bonus-list" });
+          childBonuses.forEach((bonus) => {
+            const currentPts = getWeeklyAvailableBonusPoints(child.id, weekReferenceDate);
+            const redeemedEntries = getBonusRedemptionsForChildWeek(child.id, weekReferenceDate)
+              .filter((entry) => entry.bonusId === bonus.id)
+              .sort((a, b) => {
+                const aTime = parseDate(a.redeemedAt);
+                const bTime = parseDate(b.redeemedAt);
+                return (aTime ? aTime.getTime() : 0) - (bTime ? bTime.getTime() : 0);
+              });
+            const redeemedCount = redeemedEntries.length;
+            const maxPerWeek = getBonusMaxPerWeek(bonus);
+            const achieved = currentPts >= bonus.pointsRequired;
+            const canRedeemThisWeek = redeemedCount < maxPerWeek;
+            redeemedEntries.forEach((redeemedEntry) => {
+              const redeemedRow = createElement("div", { className: "bonus-row bonus-redeemed" });
+              const redeemedLabel = createElement("span", {
+                className: "bonus-label",
+                text: redeemedEntry.labelSnapshot || bonus.label,
+              });
+              const redeemedProgressWrap = createElement("div", { className: "bonus-progress-wrap" });
+              const redeemedProgress = createElement("div", { className: "bonus-progress-bar" });
+              redeemedProgress.style.width = "100%";
+              redeemedProgressWrap.appendChild(redeemedProgress);
+              const redeemedStatus = createElement("span", { className: "bonus-pts-label", text: t("bonus.redeemed") });
+              const redeemedMeta = createElement("div", { className: "bonus-meta" });
+              redeemedMeta.appendChild(createElement("span", {
+                className: "bonus-pts-label",
+                text: t("dashboard.bonusProgress", {
+                  current: String(redeemedEntry.pointsSpent || bonus.pointsRequired),
+                  required: String(bonus.pointsRequired),
+                }),
+              }));
+              redeemedRow.appendChild(redeemedLabel);
+              redeemedRow.appendChild(redeemedProgressWrap);
+              redeemedRow.appendChild(redeemedStatus);
+              redeemedRow.appendChild(redeemedMeta);
+              if (parentMode) {
+                const releaseBtn = createElement("button", {
+                  className: "button secondary overview-inline-button compact-on-small",
+                  html: `${icon("cancel")}<span class="button-label">${t("bonus.release")}</span>`,
+                  attrs: { "aria-label": t("bonus.release"), title: t("bonus.release") },
+                });
+                releaseBtn.addEventListener("click", (event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  if (!confirm(t("bonus.releaseConfirm"))) return;
+                  if (!releaseRedeemedBonus(redeemedEntry)) return;
+                  renderApp();
+                });
+                redeemedRow.appendChild(releaseBtn);
+              }
+              bonusList.appendChild(redeemedRow);
+            });
+
+            if (!canRedeemThisWeek) {
+              return;
+            }
+
+            const row = createElement("div", { className: `bonus-row${achieved ? " bonus-achieved" : ""}` });
+            const labelEl = createElement("span", { className: "bonus-label", text: bonus.label });
+            const progressWrap = createElement("div", { className: "bonus-progress-wrap" });
+            const progressBar = createElement("div", { className: "bonus-progress-bar" });
+            const fill = Math.min(1, currentPts / bonus.pointsRequired);
+            progressBar.style.width = `${Math.round(fill * 100)}%`;
+            progressWrap.appendChild(progressBar);
+
+            const ptsLabel = createElement("span", {
+              className: "bonus-pts-label",
+              text: achieved
+                ? t("dashboard.bonusAchieved")
+                : t("dashboard.bonusProgress", { current: String(currentPts), required: String(bonus.pointsRequired) }),
+            });
+            const bonusMeta = createElement("div", { className: "bonus-meta" });
+            bonusMeta.appendChild(createElement("span", {
+              className: "bonus-pts-label",
+              text: t("bonus.available", { points: String(currentPts) }),
+            }));
+            bonusMeta.appendChild(createElement("span", {
+              className: "bonus-pts-label",
+              text: t("bonus.redeemedThisWeek", { count: String(redeemedCount) }),
+            }));
+
+            row.appendChild(labelEl);
+            row.appendChild(progressWrap);
+            row.appendChild(ptsLabel);
+            row.appendChild(bonusMeta);
+
+            if (parentMode) {
+              if (achieved && canRedeemThisWeek) {
+                const redeemBtn = createElement("button", {
+                  className: "button primary overview-inline-button compact-on-small",
+                  html: `${icon("save")}<span class="button-label">${t("bonus.redeem")}</span>`,
+                  attrs: { "aria-label": t("bonus.redeem"), title: t("bonus.redeem") },
+                });
+                redeemBtn.addEventListener("click", (event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  if (!redeemBonusForChild(bonus, child.id, weekReferenceDate)) return;
+                  renderApp();
+                });
+                row.appendChild(redeemBtn);
+              }
+              const editBtn = createElement("button", {
+                className: "button secondary overview-inline-button compact-on-small",
+                html: icon("edit"),
+                attrs: { "aria-label": t("task.edit"), title: t("task.edit") },
+              });
+              editBtn.addEventListener("click", () => buildBonusForm(bonus));
+              row.appendChild(editBtn);
+            }
+
+            bonusList.appendChild(row);
+          });
+          bonusSection.appendChild(bonusList);
+        }
+
+      } else {
+        bonusSection.classList.add("collapsed");
+      }
+      childPanel.appendChild(bonusSection);
 
       overview.appendChild(childPanel);
     });
 
-    panel.appendChild(overview);
+    const overviewPanel = createElement("section", { className: "panel dashboard-overview-panel" });
+    overviewPanel.appendChild(createElement("h2", { text: t("dashboard.title") }));
+    overviewPanel.appendChild(overview);
+    dashboardScroll.appendChild(overviewPanel);
+
     const weekPanel = renderParentWeekCalendar(parseDate(appState.calendarDate) || new Date(), {
       assigneeIds: parentMode ? null : [user.id],
       interactive: true,
     });
-    weekPanel.style.marginTop = "0.85rem";
-    weekPanel.style.marginBottom = "calc(0.9rem - 15px)";
-    panel.appendChild(weekPanel);
+    weekPanel.classList.add("dashboard-calendar-panel");
+    dashboardScroll.appendChild(weekPanel);
   }
 
+  panel.appendChild(dashboardScroll);
   container.appendChild(panel);
 }
 
@@ -1706,6 +2941,14 @@ function renderTaskCard(task, showActions = true) {
   const assigneeColor = getUserColor(assignee);
   card.style.borderColor = hexToRgba(assigneeColor, 0.35);
   card.style.background = hexToRgba(assigneeColor, 0.1);
+
+  const tooltipParts = [task.title];
+  if (task.description) {
+    tooltipParts.push(task.description);
+  }
+  tooltipParts.push(`${t("task.durationShort")}: ${formatDurationMinutes(getTaskDurationMinutes(task))}`);
+  tooltipParts.push(`${t("task.points")}: ${getTaskPoints(task)}`);
+  card.setAttribute("data-tooltip", tooltipParts.join("\n"));
 
   const titleRow = createElement("div", { className: "task-title-row" });
   const title = createElement("h3", { text: task.title });
@@ -1722,7 +2965,7 @@ function renderTaskCard(task, showActions = true) {
 
   const metaText = isTaskScheduled(task)
     ? `${t("task.due")}: ${formatDate(new Date(task.dueDate))} • ${t("task.durationShort")}: ${formatDurationMinutes(getTaskDurationMinutes(task))}`
-    : `${t("task.targetWeek")}: ${t(getTaskWeekSelection(task) === "next" ? "task.nextWeek" : "task.thisWeek")}`;
+    : `${t("task.targetWeek")}: ${t(getTaskWeekLabelKey(getTaskWeekSelection(task)))}`;
   const meta = createElement("div", { className: "meta", text: metaText });
 
   const badges = createElement("div", { className: "badges" });
@@ -1735,9 +2978,9 @@ function renderTaskCard(task, showActions = true) {
   if (task.weekly === true) {
     badges.appendChild(createElement("span", { className: "badge", text: t("task.weekly") }));
   }
-  if (task.done === true) {
-    badges.appendChild(createElement("span", { className: "badge", text: t("task.done") }));
-  }
+  badges.appendChild(createElement("span", { className: "badge", text: `${getTaskPoints(task)} ${t("task.pointsShort")}` }));
+  if (isTaskChildDone(task)) badges.appendChild(createElement("span", { className: "badge", text: t("task.doneByChild") }));
+  if (isTaskConfirmed(task)) badges.appendChild(createElement("span", { className: "badge", text: t("task.confirmed") }));
   if (task.isReadonly) {
     badges.appendChild(createElement("span", { className: "badge", text: t("task.readonly") }));
   }
@@ -1745,22 +2988,22 @@ function renderTaskCard(task, showActions = true) {
   card.appendChild(titleRow);
   card.appendChild(meta);
 
-  if (canToggleTaskDone(task)) {
-    const doneRow = createElement("label", { className: "task-done-toggle" });
-    const doneInput = createElement("input", {
-      className: "input-checkbox",
-      attrs: { type: "checkbox", "aria-label": t("task.done") },
+  if (canCurrentUserMarkTaskDone(task) || canCurrentUserConfirmTask(task)) {
+    const statusActionLabel = isTaskChildDone(task) && hasRole(appState.currentUser, "parent")
+      ? t("task.confirmFinal")
+      : isTaskConfirmed(task) && hasRole(appState.currentUser, "parent")
+        ? t("task.open")
+        : t("task.markDone");
+    const statusBtn = createElement("button", {
+      className: "button secondary compact-on-small",
+      text: statusActionLabel,
     });
-    doneInput.checked = task.done === true;
-    doneInput.addEventListener("change", () => {
-      task.done = doneInput.checked;
+    statusBtn.addEventListener("click", () => {
+      if (!cycleTaskCompletionStatus(task)) return;
       saveTask(task);
-      setLastAction(doneInput.checked ? "action.taskDone" : "action.taskUndone");
       renderApp();
     });
-    doneRow.appendChild(doneInput);
-    doneRow.appendChild(createElement("span", { text: t("task.done") }));
-    card.appendChild(doneRow);
+    card.appendChild(statusBtn);
   }
 
   card.appendChild(badges);
@@ -1849,12 +3092,18 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   weekSelect.innerHTML = `
     <option value="current">${t("task.thisWeek")}</option>
     <option value="next">${t("task.nextWeek")}</option>
+    <option value="next2">${t("task.inTwoWeeks")}</option>
+    <option value="next3">${t("task.inThreeWeeks")}</option>
+    <option value="next4">${t("task.inFourWeeks")}</option>
   `;
   weekLabel.appendChild(weekSelect);
 
   const assigneeLabel = createElement("label");
   assigneeLabel.innerHTML = `<span>${t("task.assignedTo")}</span>`;
   const assigneeSelect = createElement("select", { className: "select", attrs: { name: "assignedTo" } });
+  if (!childMode && !existingTask) {
+    assigneeSelect.appendChild(createElement("option", { text: t("task.allChildren"), attrs: { value: "all" } }));
+  }
   getChildUsers().forEach((child) => {
     const option = createElement("option", { text: child.name, attrs: { value: child.id } });
     assigneeSelect.appendChild(option);
@@ -1870,6 +3119,24 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   durationInput.value = "30";
   durationLabel.appendChild(durationInput);
 
+  const pointsLabel = createElement("label");
+  pointsLabel.innerHTML = `<span>${t("task.points")}</span>`;
+  const pointsInput = createElement("input", {
+    className: "input",
+    attrs: { type: "number", name: "points", min: "1", step: "1" },
+  });
+  pointsInput.value = "1";
+  pointsLabel.appendChild(pointsInput);
+
+  const countLabel = createElement("label");
+  countLabel.innerHTML = `<span>${t("task.count")}</span>`;
+  const countInput = createElement("input", {
+    className: "input",
+    attrs: { type: "number", name: "count", min: "1", max: "7", step: "1" },
+  });
+  countInput.value = "1";
+  countLabel.appendChild(countInput);
+
   const weeklyLabel = createElement("label");
   weeklyLabel.innerHTML = `<span>${t("task.weekly")}</span>`;
   const weeklyInput = createElement("input", {
@@ -1878,6 +3145,48 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   });
   weeklyInput.checked = false;
   weeklyLabel.appendChild(weeklyInput);
+
+  const scheduleDaysLabel = createElement("label");
+  scheduleDaysLabel.innerHTML = `<span>${t("task.scheduleDays")}</span>`;
+  const weekdayWrap = createElement("div", {
+    attrs: {
+      style: "display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:0.5rem;",
+    },
+  });
+  const weekdayCheckboxes = [];
+  TASK_WEEKDAY_OPTIONS.forEach((dayIndex) => {
+    const dayLabel = createElement("label", {
+      attrs: {
+        style: "display:flex;align-items:center;gap:0.35rem;margin:0;",
+      },
+    });
+    const dayInput = createElement("input", {
+      className: "input-checkbox",
+      attrs: { type: "checkbox", value: String(dayIndex) },
+    });
+    const dayText = createElement("span", { text: getWeekdayLabel(dayIndex) });
+    dayLabel.appendChild(dayInput);
+    dayLabel.appendChild(dayText);
+    weekdayWrap.appendChild(dayLabel);
+    weekdayCheckboxes.push(dayInput);
+  });
+  scheduleDaysLabel.appendChild(weekdayWrap);
+
+  const startTimeLabel = createElement("label");
+  startTimeLabel.innerHTML = `<span>${t("task.startTime")}</span>`;
+  const startTimeInput = createElement("select", { className: "select", attrs: { name: "startTime" } });
+  const emptyOption = createElement("option", { text: "—", attrs: { value: "" } });
+  startTimeInput.appendChild(emptyOption);
+  for (let hour = 0; hour < 24; hour++) {
+    for (let minute = 0; minute < 60; minute += 5) {
+      const hour2 = String(hour).padStart(2, "0");
+      const min2 = String(minute).padStart(2, "0");
+      const timeStr = `${hour2}:${min2}`;
+      const opt = createElement("option", { text: timeStr, attrs: { value: timeStr } });
+      startTimeInput.appendChild(opt);
+    }
+  }
+  startTimeLabel.appendChild(startTimeInput);
 
   const doneLabel = createElement("label");
   doneLabel.innerHTML = `<span>${t("task.done")}</span>`;
@@ -1930,7 +3239,13 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   form.appendChild(weekLabel);
   form.appendChild(assigneeLabel);
   form.appendChild(durationLabel);
+  form.appendChild(pointsLabel);
+  if (!existingTask) {
+    form.appendChild(countLabel);
+  }
   form.appendChild(weeklyLabel);
+  form.appendChild(scheduleDaysLabel);
+  form.appendChild(startTimeLabel);
   form.appendChild(doneLabel);
   form.appendChild(error);
   form.appendChild(actions);
@@ -1941,8 +3256,16 @@ function buildTaskForm(existingTask = null, defaults = {}) {
     weekSelect.value = getTaskWeekSelection(existingTask);
     assigneeSelect.value = existingTask.assignedTo;
     durationInput.value = String(getTaskDurationMinutes(existingTask));
+    pointsInput.value = String(getTaskPoints(existingTask));
     weeklyInput.checked = existingTask.weekly === true;
-    doneInput.checked = existingTask.done === true;
+    doneInput.checked = isTaskConfirmed(existingTask);
+    const existingDue = parseDate(existingTask.dueDate);
+    if (existingDue && isTaskScheduled(existingTask)) {
+      const weekday = existingDue.getDay();
+      const matchingDay = weekdayCheckboxes.find((checkbox) => Number(checkbox.value) === weekday);
+      if (matchingDay) matchingDay.checked = true;
+      startTimeInput.value = `${String(existingDue.getHours()).padStart(2, "0")}:${String(existingDue.getMinutes()).padStart(2, "0")}`;
+    }
   } else {
     if (defaults && defaults.assignedTo) {
       assigneeSelect.value = defaults.assignedTo;
@@ -1952,6 +3275,8 @@ function buildTaskForm(existingTask = null, defaults = {}) {
   if (childMode) {
     assigneeSelect.value = appState.currentUser.id;
     assigneeSelect.disabled = true;
+    doneInput.checked = false;
+    doneInput.disabled = true;
   }
 
   form.addEventListener("submit", (event) => {
@@ -1960,8 +3285,21 @@ function buildTaskForm(existingTask = null, defaults = {}) {
     const assignedTo = childMode ? appState.currentUser.id : assigneeSelect.value;
     const targetWeek = weekSelect.value;
     const durationMinutes = normalizeTaskDurationMinutes(durationInput.value, 30);
+    const points = normalizeTaskPoints(pointsInput.value, 1);
+    const taskCount = existingTask ? 1 : Math.min(7, Math.max(1, parseInt(countInput.value, 10) || 1));
     const weekly = weeklyInput.checked;
     const done = doneInput.checked;
+    const selectedDays = weekdayCheckboxes
+      .filter((checkbox) => checkbox.checked)
+      .map((checkbox) => Number(checkbox.value));
+    const startTime = startTimeInput.value;
+    const hasScheduledDays = selectedDays.length > 0;
+    const hasStartTime = !!startTime;
+
+    if ((hasScheduledDays && !hasStartTime) || (!hasScheduledDays && hasStartTime)) {
+      error.textContent = t("task.schedulePairError");
+      return;
+    }
 
     if (!title) {
       error.textContent = t("task.saveError");
@@ -1978,6 +3316,13 @@ function buildTaskForm(existingTask = null, defaults = {}) {
       ? new Date(existingTask.dueDate)
       : dueAnchor;
 
+    const scheduledDates = hasScheduledDays
+      ? selectedDays
+        .map((dayIndex) => getScheduledDateForWeekday(targetWeek, dayIndex, startTime))
+        .filter((date) => !!date)
+      : [];
+    const normalizedScheduledDates = existingTask ? scheduledDates.slice(0, 1) : scheduledDates;
+
     const weeklyAssignments = (existingTask && existingTask.weeklyAssignments && typeof existingTask.weeklyAssignments === "object")
       ? { ...existingTask.weeklyAssignments }
       : {};
@@ -1985,17 +3330,73 @@ function buildTaskForm(existingTask = null, defaults = {}) {
     const weeklyAnchor = getCurrentWeekStart(dueDate);
     weeklyAnchor.setHours(0, 0, 0, 0);
 
+    const getDueDateIso = (scheduledDate = null, baseDueDate = dueAnchor) => {
+      if (weekly) return weeklyAnchor.toISOString();
+      if (scheduledDate) return scheduledDate.toISOString();
+      return baseDueDate.toISOString();
+    };
+
+    const getScheduledMeta = (scheduledDate = null, baseDueDate = dueAnchor) => {
+      if (weekly) {
+        return {
+          scheduledDateKey: undefined,
+          scheduledTime: undefined,
+        };
+      }
+
+      const resolved = scheduledDate || baseDueDate;
+      if (!resolved) {
+        return {
+          scheduledDateKey: undefined,
+          scheduledTime: undefined,
+        };
+      }
+
+      return {
+        scheduledDateKey: formatLocalDateKey(resolved),
+        scheduledTime: `${String(resolved.getHours()).padStart(2, "0")}:${String(resolved.getMinutes()).padStart(2, "0")}`,
+      };
+    };
+
+    const getWeeklyAssignments = (scheduledDate = null, baseAssignments = weeklyAssignments) => {
+      if (!weekly) return undefined;
+      const nextAssignments = { ...baseAssignments };
+      if (scheduledDate) {
+        nextAssignments[getWeekKey(scheduledDate)] = scheduledDate.toISOString();
+      }
+      return nextAssignments;
+    };
+
+    const taskPayload = {
+      title,
+      description: descInput.value.trim(),
+      dueDate: getDueDateIso(),
+      ...getScheduledMeta(),
+      durationMinutes,
+      points,
+      targetWeek,
+      weekly,
+      weeklyAssignments: getWeeklyAssignments(),
+      completionStatus: done ? "confirmed" : "open",
+      done,
+      type: "regular",
+      isReadonly: false,
+    };
+
     const task = existingTask
       ? {
           ...existingTask,
           title,
           description: descInput.value.trim(),
-          dueDate: weekly ? weeklyAnchor.toISOString() : dueDate.toISOString(),
+          dueDate: getDueDateIso(normalizedScheduledDates[0] || null, dueDate),
+          ...getScheduledMeta(normalizedScheduledDates[0] || null, dueDate),
           durationMinutes,
+          points,
           targetWeek,
           assignedTo,
           weekly,
-          weeklyAssignments: weekly ? weeklyAssignments : undefined,
+          weeklyAssignments: getWeeklyAssignments(normalizedScheduledDates[0] || null),
+          completionStatus: done ? "confirmed" : "open",
           done,
         }
       : {
@@ -2004,11 +3405,14 @@ function buildTaskForm(existingTask = null, defaults = {}) {
           description: descInput.value.trim(),
           assignedTo,
           createdBy: appState.currentUser.id,
-          dueDate: weekly ? weeklyAnchor.toISOString() : dueAnchor.toISOString(),
+          dueDate: getDueDateIso(),
+          ...getScheduledMeta(),
           durationMinutes,
+          points,
           targetWeek,
           weekly,
-          weeklyAssignments: weekly ? {} : undefined,
+          weeklyAssignments: getWeeklyAssignments(),
+          completionStatus: done ? "confirmed" : "open",
           done,
           type: "regular",
           isReadonly: false,
@@ -2022,7 +3426,47 @@ function buildTaskForm(existingTask = null, defaults = {}) {
       task.createdBy = appState.currentUser.id;
     }
 
-    saveTask(task);
+    if (!existingTask && !childMode && assignedTo === "all") {
+      const schedulingTargets = normalizedScheduledDates.length > 0 ? normalizedScheduledDates : [null];
+      getChildUsers().forEach((child) => {
+        schedulingTargets.forEach((scheduledDate) => {
+          for (let i = 0; i < taskCount; i += 1) {
+            saveTask({
+              ...taskPayload,
+              id: makeId("task"),
+              assignedTo: child.id,
+              createdBy: appState.currentUser.id,
+              dueDate: getDueDateIso(scheduledDate),
+              ...getScheduledMeta(scheduledDate),
+              weeklyAssignments: getWeeklyAssignments(scheduledDate, {}),
+            });
+          }
+        });
+      });
+    } else if (!existingTask && normalizedScheduledDates.length > 1) {
+      normalizedScheduledDates.forEach((scheduledDate) => {
+        for (let i = 0; i < taskCount; i += 1) {
+          saveTask({
+            ...taskPayload,
+            id: makeId("task"),
+            assignedTo,
+            createdBy: appState.currentUser.id,
+            dueDate: getDueDateIso(scheduledDate),
+            ...getScheduledMeta(scheduledDate),
+            weeklyAssignments: getWeeklyAssignments(scheduledDate, {}),
+          });
+        }
+      });
+    } else if (!existingTask && taskCount > 1) {
+      for (let i = 0; i < taskCount; i += 1) {
+        saveTask({
+          ...task,
+          id: makeId("task"),
+        });
+      }
+    } else {
+      saveTask(task);
+    }
     setLastAction(existingTask ? "action.taskScheduled" : "action.taskAdded");
     overlay.remove();
     renderApp();
@@ -2035,6 +3479,117 @@ function buildTaskForm(existingTask = null, defaults = {}) {
       overlay.remove();
     }
   });
+  document.body.appendChild(overlay);
+}
+
+function buildBonusForm(existingBonus = null, defaults = {}) {
+  if (!hasRole(appState.currentUser, "parent")) return;
+
+  const existingOverlay = document.querySelector(".bonus-editor-overlay");
+  if (existingOverlay) existingOverlay.remove();
+
+  const overlay = createElement("div", { className: "task-editor-overlay bonus-editor-overlay settings-overlay" });
+  const panel = createElement("section", { className: "task-editor-dialog settings-overlay-dialog card settings-card" });
+
+  panel.appendChild(createElement("h3", {
+    text: existingBonus ? t("bonus.editTitle") : t("bonus.createTitle"),
+  }));
+
+  const form = createElement("form", { className: "form" });
+
+  const labelInputLabel = createElement("label");
+  labelInputLabel.appendChild(createElement("span", { text: t("bonus.label") }));
+  const labelInput = createElement("input", {
+    className: "input",
+    attrs: { id: "bonus-label-input", type: "text", value: existingBonus ? existingBonus.label : "", placeholder: t("bonus.label") },
+  });
+  labelInputLabel.appendChild(labelInput);
+  form.appendChild(labelInputLabel);
+
+  const ptsInputLabel = createElement("label");
+  ptsInputLabel.appendChild(createElement("span", { text: t("bonus.points") }));
+  const ptsInput = createElement("input", {
+    className: "input",
+    attrs: { id: "bonus-pts-input", type: "number", min: "1", step: "1", value: existingBonus ? String(existingBonus.pointsRequired) : "10" },
+  });
+  ptsInputLabel.appendChild(ptsInput);
+  form.appendChild(ptsInputLabel);
+
+  const maxPerWeekLabel = createElement("label");
+  maxPerWeekLabel.appendChild(createElement("span", { text: t("bonus.maxPerWeek") }));
+  const maxPerWeekInput = createElement("input", {
+    className: "input",
+    attrs: { id: "bonus-maxperweek-input", type: "number", min: "1", max: "5", step: "1", value: existingBonus ? String(existingBonus.maxPerWeek ?? 1) : "1" },
+  });
+  maxPerWeekLabel.appendChild(maxPerWeekInput);
+  form.appendChild(maxPerWeekLabel);
+
+  const assignLabel = createElement("label");
+  assignLabel.appendChild(createElement("span", { text: t("bonus.assignedTo") }));
+  const assignSelect = createElement("select", { className: "select", attrs: { id: "bonus-assignee-input" } });
+  const defaultAssignedTo = existingBonus
+    ? existingBonus.assignedTo
+    : (defaults.assignedTo || "all");
+  const allOpt = createElement("option", { text: t("bonus.allChildren"), attrs: { value: "all" } });
+  assignSelect.appendChild(allOpt);
+  getChildUsers().forEach((child) => {
+    const opt = createElement("option", { text: child.name, attrs: { value: child.id } });
+    if (defaultAssignedTo === child.id) opt.selected = true;
+    assignSelect.appendChild(opt);
+  });
+  if (defaultAssignedTo === "all") allOpt.selected = true;
+  assignLabel.appendChild(assignSelect);
+  form.appendChild(assignLabel);
+
+  const errorEl = createElement("div", { className: "error-message" });
+  errorEl.style.display = "none";
+  form.appendChild(errorEl);
+
+  const btnRow = createElement("div", { style: "display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.5rem;" });
+  const saveBtn = createElement("button", { className: "button primary", text: t("bonus.save"), attrs: { type: "submit" } });
+  const cancelBtn = createElement("button", { className: "button secondary", text: t("bonus.cancel"), attrs: { type: "button" } });
+  cancelBtn.addEventListener("click", () => overlay.remove());
+  btnRow.appendChild(saveBtn);
+  btnRow.appendChild(cancelBtn);
+
+  if (existingBonus) {
+    const delBtn = createElement("button", { className: "button danger", text: t("bonus.delete"), attrs: { type: "button" } });
+    delBtn.addEventListener("click", () => {
+      if (!confirm(t("bonus.deleteConfirm"))) return;
+      deleteBonus(existingBonus.id);
+      overlay.remove();
+      renderApp();
+    });
+    btnRow.appendChild(delBtn);
+  }
+  form.appendChild(btnRow);
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const label = labelInput.value.trim();
+    const pts = parseInt(ptsInput.value, 10);
+    const maxPW = Math.min(5, Math.max(1, parseInt(maxPerWeekInput.value, 10) || 1));
+    if (!label || !Number.isFinite(pts) || pts < 1) {
+      errorEl.textContent = t("bonus.saveError");
+      errorEl.style.display = "";
+      return;
+    }
+    const bonus = {
+      id: existingBonus ? existingBonus.id : makeId("bonus"),
+      label,
+      pointsRequired: pts,
+      maxPerWeek: maxPW,
+      assignedTo: assignSelect.value,
+      createdAt: existingBonus ? existingBonus.createdAt : new Date().toISOString(),
+    };
+    saveBonus(bonus);
+    overlay.remove();
+    renderApp();
+  });
+
+  panel.appendChild(form);
+  overlay.appendChild(panel);
+  overlay.addEventListener("click", (event) => { if (event.target === overlay) overlay.remove(); });
   document.body.appendChild(overlay);
 }
 
@@ -2089,8 +3644,8 @@ function renderTaskList(container) {
 function getWeekStart(date) {
   const d = new Date(date);
   const day = d.getDay(); // 0=Sunday, 1=Monday, ..., 6=Saturday
-  // Calculate diff to get to Monday (1): if Sunday (0) add 1, otherwise subtract (day-1)
-  const diff = day === 0 ? 1 : 1 - day;
+  // Monday-based week: Sunday belongs to the previous week.
+  const diff = day === 0 ? -6 : 1 - day;
   d.setDate(d.getDate() + diff);
   return d;
 }
@@ -2107,13 +3662,16 @@ function handleDrop(e) {
   if (!task || task.isReadonly || !canCurrentUserScheduleTask(task)) return;
 
   const [hour, min] = time.split(':').map(Number);
-  const newDate = new Date(date);
-  newDate.setHours(hour, min, 0, 0);
+  const [year, month, day] = date.split("-").map(Number);
+  if (!year || !month || !day || Number.isNaN(hour) || Number.isNaN(min)) return;
+  const newDate = new Date(year, month - 1, day, hour, min, 0, 0);
 
   if (task.weekly === true) {
     setWeeklyAssignmentDate(task, newDate);
   } else {
     task.dueDate = newDate.toISOString();
+    task.scheduledDateKey = date;
+    task.scheduledTime = `${String(hour).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
   }
 
   setLastAction("action.taskScheduled");
@@ -2138,8 +3696,10 @@ function handleDropToUnscheduled(e, childId) {
   if (task.weekly === true) {
     clearWeeklyAssignmentDate(task, referenceDate);
   } else {
-    task.targetWeek = "current";
+    task.targetWeek = getTargetWeekSelectionForDate(unscheduledDate);
     task.dueDate = unscheduledDate.toISOString();
+    task.scheduledDateKey = undefined;
+    task.scheduledTime = undefined;
   }
 
   setLastAction("action.taskUnscheduled");
@@ -2264,9 +3824,14 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
   const slotMinutes = 30;
   const slotHeight = 42;
   const headerHeight = 56;
+  const visibleRangeMinutes = 6 * 60;
   const totalSlots = (24 * 60) / slotMinutes;
   let currentTimeTop = null;
   const scrollWrap = createElement("div", { className: "overview-week-scroll" });
+  const visibleHeight = Math.round((visibleRangeMinutes / slotMinutes) * slotHeight) + headerHeight;
+  scrollWrap.style.height = `${visibleHeight}px`;
+  scrollWrap.style.minHeight = `${visibleHeight}px`;
+  scrollWrap.style.maxHeight = `${visibleHeight}px`;
   const grid = createElement("div", { className: "overview-week-grid" });
 
   const timeColumn = createElement("div", { className: "overview-time-column" });
@@ -2305,6 +3870,7 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
     dayColumn.appendChild(dayHeader);
 
     const lane = createElement("div", { className: "overview-day-lane" });
+    lane.style.position = "relative";
     lane.style.height = `${totalSlots * slotHeight}px`;
 
     for (let slot = 0; slot < totalSlots; slot++) {
@@ -2312,7 +3878,7 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
       const hour = Math.floor(totalMinutes / 60);
       const minute = totalMinutes % 60;
       const slotEl = createElement("div", { className: "overview-grid-slot" });
-      slotEl.setAttribute("data-date", date.toISOString().split("T")[0]);
+      slotEl.setAttribute("data-date", formatLocalDateKey(date));
       slotEl.setAttribute("data-time", `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`);
       if (interactive) {
         slotEl.addEventListener("dragover", (event) => event.preventDefault());
@@ -2343,10 +3909,11 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
         const top = (totalMinutes / slotMinutes) * slotHeight;
         const durationHeight = (durationMinutes / slotMinutes) * slotHeight;
         const cardHeight = Math.max(cardMinHeight, durationHeight);
+        const maxTop = Math.max(0, (totalSlots * slotHeight) - cardHeight);
         return {
           task: occurrence.task,
           due,
-          top: Math.max(0, top),
+          top: Math.max(0, Math.min(maxTop, top)),
           height: cardHeight,
           end: Math.max(0, top) + cardHeight + cardVerticalGap,
           column: 0,
@@ -2398,6 +3965,9 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
         className: "overview-week-task-card",
         attrs: { draggable: (!entry.task.isReadonly && canSchedule) ? "true" : "false" },
       });
+      taskEl.style.position = "absolute";
+      taskEl.setAttribute("data-date", formatLocalDateKey(due));
+      taskEl.setAttribute("data-time", `${String(due.getHours()).padStart(2, "0")}:${String(due.getMinutes()).padStart(2, "0")}`);
       taskEl.style.top = `${entry.top}px`;
       taskEl.style.height = `${entry.height}px`;
       taskEl.style.background = hexToRgba(assigneeColor, 0.18);
@@ -2413,29 +3983,7 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
       const text = createElement("span", { className: "overview-week-task-label", text: entry.task.title });
       taskEl.appendChild(avatar);
       taskEl.appendChild(text);
-
-      if (canToggleTaskDone(entry.task, due)) {
-        const doneLabel = createElement("label", { className: "task-done-toggle inline" });
-        const doneInput = createElement("input", {
-          className: "input-checkbox",
-          attrs: { type: "checkbox", "aria-label": t("task.done") },
-        });
-        doneInput.checked = entry.task.done === true;
-        doneInput.addEventListener("click", (event) => {
-          event.stopPropagation();
-        });
-        doneInput.addEventListener("mousedown", (event) => {
-          event.stopPropagation();
-        });
-        doneInput.addEventListener("change", () => {
-          entry.task.done = doneInput.checked;
-          saveTask(entry.task);
-          setLastAction(doneInput.checked ? "action.taskDone" : "action.taskUndone");
-          renderApp();
-        });
-        doneLabel.appendChild(doneInput);
-        taskEl.appendChild(doneLabel);
-      }
+      taskEl.appendChild(makeTaskStatusCircleBtn(entry.task, due));
 
       if (entry.task.isReadonly) {
         taskEl.appendChild(createReadonlyLock());
@@ -2443,12 +3991,22 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
         taskEl.addEventListener("dragstart", (event) => {
           event.dataTransfer.setData("text/plain", entry.task.id);
         });
+          taskEl.addEventListener("dragover", (event) => event.preventDefault());
+          taskEl.addEventListener("drop", handleDrop);
         attachWeeklyTaskResize(entry.task, taskEl, slotMinutes, slotHeight);
       }
 
       const assigneeName = assignee ? assignee.name : t("task.unassigned");
-      const tooltipText = `${entry.task.title} • ${formatTime24(due)} • ${formatDurationMinutes(getTaskDurationMinutes(entry.task))} • ${assigneeName}`;
-      setTooltipIfTruncated(taskEl, text, tooltipText);
+      const calendarTooltipParts = [entry.task.title];
+      if (entry.task.description) {
+        calendarTooltipParts.push(entry.task.description);
+      }
+      calendarTooltipParts.push(`${formatTime24(due)}`);
+      calendarTooltipParts.push(`${t("task.durationShort")}: ${formatDurationMinutes(getTaskDurationMinutes(entry.task))}`);
+      calendarTooltipParts.push(`${t("task.points")}: ${getTaskPoints(entry.task)}`);
+      calendarTooltipParts.push(`${assigneeName}`);
+      const calendarTooltipText = calendarTooltipParts.join("\n");
+      setTooltipIfTruncated(taskEl, text, calendarTooltipText);
 
       taskEl.addEventListener("click", () => {
         if (entry.task.isReadonly || !canEdit) return;
@@ -2476,6 +4034,30 @@ function renderParentWeekCalendar(referenceDate = new Date(appState.calendarDate
   }
 
   scrollWrap.appendChild(grid);
+  const minutesToScrollTop = (minutes) => {
+    const clampedMinutes = Math.max(0, Math.min((24 * 60) - visibleRangeMinutes, minutes));
+    return (clampedMinutes / slotMinutes) * slotHeight;
+  };
+  const scrollTopToMinutes = (scrollTop) => {
+    const adjusted = Math.max(0, scrollTop);
+    const minutes = Math.round(adjusted / slotHeight) * slotMinutes;
+    return Math.max(0, Math.min((24 * 60) - visibleRangeMinutes, minutes));
+  };
+
+  const maxScrollTop = Math.max(0, ((24 * 60) - visibleRangeMinutes) / slotMinutes * slotHeight);
+  const now = new Date();
+  const nowMinutes = (now.getHours() * 60) + now.getMinutes();
+  const dynamicDefaultStart = Math.max(0, Math.min((24 * 60) - visibleRangeMinutes, nowMinutes - (3 * 60)));
+  const preferredStart = Number.isFinite(appState.calendarScrollMinutes) ? appState.calendarScrollMinutes : dynamicDefaultStart;
+  const preferredScrollTop = minutesToScrollTop(preferredStart);
+  const clampedScrollTop = Math.max(0, Math.min(maxScrollTop, preferredScrollTop));
+  requestAnimationFrame(() => {
+    scrollWrap.scrollTop = clampedScrollTop;
+  });
+  scrollWrap.addEventListener("scroll", () => {
+    appState.calendarScrollMinutes = scrollTopToMinutes(scrollWrap.scrollTop);
+  });
+
   panel.appendChild(scrollWrap);
 
   if (currentTimeTop !== null) {
@@ -3163,12 +4745,30 @@ function renderSettings(container) {
 }
 
 function renderStatistics(container) {
-  const panel = createElement("section", { className: "panel" });
-  panel.appendChild(createElement("h2", { text: t("stats.title") }));
-
+  const panel = createElement("section", { className: "panel statistics-panel" });
   const parentMode = hasRole(appState.currentUser, "parent");
-
+  const now = new Date();
   const range = appState.statisticsRange || "3m";
+  const children = parentMode ? getChildUsers() : [appState.currentUser];
+  const selectedChildId = parentMode ? (appState.statisticsChildId || "all") : appState.currentUser.id;
+  const activeChildren = selectedChildId === "all"
+    ? children
+    : children.filter((child) => child.id === selectedChildId);
+
+  const headerRow = createElement("div", { className: "statistics-header-row" });
+  headerRow.appendChild(createElement("h2", { text: t("stats.title") }));
+  const headerMeta = createElement("div", { className: "statistics-header-meta" });
+  headerMeta.appendChild(createElement("span", {
+    className: "statistics-header-pill",
+    text: `${t("stats.currentDate")}: ${formatDate(now, { day: "2-digit", month: "2-digit", year: "numeric" })}`,
+  }));
+  headerMeta.appendChild(createElement("span", {
+    className: "statistics-header-pill",
+    text: `${t("stats.currentWeek")}: ${formatCalendarWeek(now)}`,
+  }));
+  headerRow.appendChild(headerMeta);
+  panel.appendChild(headerRow);
+
   const rangeBar = createElement("div", { className: "statistics-range" });
   const rangeOptions = [
     { key: "1m", label: t("stats.rangeMonth") },
@@ -3177,159 +4777,300 @@ function renderStatistics(container) {
   ];
 
   rangeOptions.forEach((option) => {
-    const btn = createElement("button", { className: `button secondary statistics-filter-button ${range === option.key ? "active" : ""}`, text: option.label });
+    const btn = createElement("button", {
+      className: `button secondary statistics-filter-button ${range === option.key ? "active" : ""}`,
+      text: option.label,
+    });
     btn.addEventListener("click", () => {
       appState.statisticsRange = option.key;
       renderApp();
     });
     rangeBar.appendChild(btn);
   });
-
   panel.appendChild(rangeBar);
-
-  const children = parentMode ? getChildUsers() : [appState.currentUser];
-  const selectedChildId = parentMode ? (appState.statisticsChildId || "all") : appState.currentUser.id;
 
   if (parentMode) {
     const childFilterBar = createElement("div", { className: "statistics-child-filter" });
     childFilterBar.appendChild(createElement("span", { className: "help", text: `${t("stats.childFilter")}:` }));
-
     const childOptions = [
       { id: "all", name: t("stats.allChildren") },
       ...children.map((child) => ({ id: child.id, name: child.name })),
     ];
 
     childOptions.forEach((option) => {
-      const isActive = selectedChildId === option.id;
-      const btn = createElement("button", { className: `button secondary statistics-filter-button ${isActive ? "active" : ""}`, text: option.name });
+      const btn = createElement("button", {
+        className: `button secondary statistics-filter-button ${selectedChildId === option.id ? "active" : ""}`,
+        text: option.name,
+      });
       btn.addEventListener("click", () => {
         appState.statisticsChildId = option.id;
         renderApp();
       });
       childFilterBar.appendChild(btn);
     });
-
     panel.appendChild(childFilterBar);
   }
 
-  const activeChildren = selectedChildId === "all"
-    ? children
-    : children.filter((child) => child.id === selectedChildId);
-
-  const now = new Date();
   const start = getStatisticsRangeStart(range);
   const weekStarts = getWeekStartsInRange(start, now);
-
   const weekData = weekStarts.map((weekStart) => {
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekEnd.getDate() + 6);
     const perChild = {};
     children.forEach((child) => {
-      perChild[child.id] = { total: 0, done: 0 };
+      perChild[child.id] = {
+        totalTasks: 0,
+        confirmedTasks: 0,
+        totalPoints: 0,
+        confirmedPoints: 0,
+        bonusesAchieved: [],
+        bonusesRedeemed: 0,
+      };
     });
 
     storage.tasks.forEach((task) => {
       const slot = perChild[task.assignedTo];
       if (!slot) return;
-      if (!isTaskInWeekForStats(task, weekStart)) return;
-      slot.total += 1;
-      if (isTaskDoneInWeekForStats(task, weekStart)) {
-        slot.done += 1;
+      
+      // Use isTaskInWeek (not isTaskInWeekForStats) to include unscheduled tasks
+      if (isTaskInWeek(task, weekStart)) {
+        const points = getTaskPoints(task);
+        slot.totalTasks += 1;
+        slot.totalPoints += points;
+        
+        // Only confirmed counts toward confirmed
+        if (isTaskConfirmed(task)) {
+          slot.confirmedTasks += 1;
+          slot.confirmedPoints += points;
+        }
       }
     });
 
-    return { weekStart, perChild };
+    children.forEach((child) => {
+      const slot = perChild[child.id];
+      if (!slot) return;
+      const weekRedemptions = getBonusRedemptionsForChildWeek(child.id, weekStart);
+      const childBonuses = getBonusesForChild(child.id).filter((bonus) => {
+        const createdAt = parseDate(bonus.createdAt);
+        if (!createdAt) return true;
+        return createdAt.getTime() <= weekEnd.getTime();
+      });
+      slot.bonusesAchieved = childBonuses.filter((bonus) => slot.confirmedPoints >= bonus.pointsRequired);
+      slot.bonusesRedeemed = weekRedemptions.length;
+    });
+
+    const aggregate = activeChildren.reduce((acc, child) => {
+      const slot = perChild[child.id];
+      if (!slot) return acc;
+      acc.totalTasks += slot.totalTasks;
+      acc.confirmedTasks += slot.confirmedTasks;
+      acc.totalPoints += slot.totalPoints;
+      acc.confirmedPoints += slot.confirmedPoints;
+      return acc;
+    }, {
+      totalTasks: 0,
+      confirmedTasks: 0,
+      totalPoints: 0,
+      confirmedPoints: 0,
+    });
+
+    return { weekStart, weekEnd, perChild, aggregate };
   });
 
-  const maxTotal = Math.max(
-    1,
-    ...weekData.flatMap((week) => activeChildren.map((child) => week.perChild[child.id].total))
-  );
-  const totalTasksInRange = weekData.reduce((sum, week) => {
-    return sum + activeChildren.reduce((childSum, child) => childSum + week.perChild[child.id].total, 0);
-  }, 0);
-
-  if (weekData.length === 0 || activeChildren.length === 0 || totalTasksInRange === 0) {
+  const hasData = weekData.some((week) => week.aggregate.totalTasks > 0) && activeChildren.length > 0;
+  if (!hasData) {
     panel.appendChild(createElement("div", { className: "help", text: t("stats.noData") }));
     container.appendChild(panel);
     return;
   }
 
-  const legend = createElement("div", { className: "statistics-legend" });
-  activeChildren.forEach((child) => {
-    const marker = createElement("span", { className: "statistics-legend-color" });
-    marker.style.background = hexToRgba(getUserColor(child), 0.85);
-    const item = createElement("div", { className: "statistics-legend-item" });
-    item.appendChild(marker);
-    item.appendChild(createElement("span", { text: child.name }));
-    legend.appendChild(item);
-  });
-  panel.appendChild(legend);
+  function createWeeklyBarChart({ title, yLabel, valueKey, confirmedKey, totalKey }) {
+    const showPerChild = selectedChildId === "all" && activeChildren.length > 1;
+    const maxValue = showPerChild
+      ? Math.max(1, ...weekData.flatMap((week) => activeChildren.map((child) => week.perChild[child.id][totalKey])))
+      : Math.max(1, ...weekData.map((week) => week.aggregate[totalKey]));
+    
+    const chartSection = createElement("section", { className: "statistics-section" });
+    chartSection.appendChild(createElement("h3", { className: "statistics-section-title", text: title }));
 
-  const chartShell = createElement("div", { className: "statistics-chart-shell" });
-  const yAxis = createElement("div", { className: "statistics-y-axis" });
-  const axisValues = [];
-  for (let value = maxTotal; value >= 0; value -= 1) {
-    axisValues.push(value);
-  }
-
-  axisValues.forEach((value) => {
-    const ratio = maxTotal > 0 ? value / maxTotal : 0;
-    const tick = createElement("div", { className: "statistics-y-tick" });
-    tick.style.bottom = `${Math.round(ratio * 150)}px`;
-    tick.appendChild(createElement("span", { className: "statistics-y-label", text: String(value) }));
-    yAxis.appendChild(tick);
-  });
-
-  const chart = createElement("div", { className: "statistics-chart" });
-
-  weekData.forEach((week) => {
-    const weekCol = createElement("div", { className: "statistics-week" });
-    const bars = createElement("div", { className: "statistics-bars" });
-    const weekEnd = new Date(week.weekStart);
-    weekEnd.setDate(weekEnd.getDate() + 6);
+    const chartShell = createElement("div", { className: "statistics-chart-shell" });
+    const axisWrap = createElement("div", { className: "statistics-axis-wrap" });
+    axisWrap.appendChild(createElement("div", { className: "statistics-axis-title", text: yLabel }));
+    const yAxis = createElement("div", { className: "statistics-y-axis" });
+    const axisValues = [];
+    const step = maxValue <= 5 ? 1 : Math.max(1, Math.ceil(maxValue / 5));
+    for (let value = 0; value <= maxValue; value += step) {
+      axisValues.push(value);
+    }
+    if (axisValues[axisValues.length - 1] !== maxValue) {
+      axisValues.push(maxValue);
+    }
 
     axisValues.forEach((value) => {
-      const ratio = maxTotal > 0 ? value / maxTotal : 0;
-      const gridLine = createElement("div", { className: "statistics-grid-line" });
-      gridLine.style.bottom = `${Math.round(ratio * 150)}px`;
-      bars.appendChild(gridLine);
+      const ratio = maxValue > 0 ? value / maxValue : 0;
+      const tick = createElement("div", { className: "statistics-y-tick" });
+      tick.style.bottom = `${Math.round(ratio * 150)}px`;
+      tick.appendChild(createElement("span", { className: "statistics-y-label", text: String(value) }));
+      yAxis.appendChild(tick);
     });
+    axisWrap.appendChild(yAxis);
+
+    const chart = createElement("div", { className: "statistics-chart" });
+    weekData.forEach((week) => {
+      const weekCol = createElement("div", { className: "statistics-week" });
+      const bars = createElement("div", { className: "statistics-bars" });
+      axisValues.forEach((value) => {
+        const ratio = maxValue > 0 ? value / maxValue : 0;
+        const gridLine = createElement("div", { className: "statistics-grid-line" });
+        gridLine.style.bottom = `${Math.round(ratio * 150)}px`;
+        bars.appendChild(gridLine);
+      });
+
+      if (showPerChild) {
+        activeChildren.forEach((child) => {
+          const childData = week.perChild[child.id];
+          const totalValue = childData[totalKey];
+          const confirmedValue = childData[confirmedKey];
+          const totalHeight = (totalValue / maxValue) * 150;
+          const confirmedHeight = (confirmedValue / maxValue) * 150;
+          const barWrap = createElement("div", { className: "statistics-bar-wrap statistics-bar-wrap-child" });
+          barWrap.setAttribute(
+            "data-tooltip",
+            `${child.name} | ${formatCalendarWeek(week.weekStart)} | ${formatDayMonth(week.weekStart)} - ${formatDayMonth(week.weekEnd)} | ${t("stats.total")}: ${totalValue} | ${t("stats.done")}: ${confirmedValue}`
+          );
+          const stack = createElement("div", { className: "statistics-bar-stack" });
+          const totalBar = createElement("div", { className: "statistics-bar statistics-bar-total" });
+          totalBar.style.height = `${totalValue > 0 ? Math.max(2, totalHeight) : 0}px`;
+          totalBar.style.background = hexToRgba(getUserColor(child), 0.28);
+          totalBar.style.borderColor = hexToRgba(getUserColor(child), 0.55);
+          const confirmedBar = createElement("div", { className: "statistics-bar statistics-bar-done-secondary" });
+          confirmedBar.style.height = `${confirmedValue > 0 ? Math.max(2, confirmedHeight) : 0}px`;
+          confirmedBar.style.background = hexToRgba(getUserColor(child), 0.9);
+          confirmedBar.style.borderColor = hexToRgba(getUserColor(child), 0.96);
+          stack.appendChild(totalBar);
+          stack.appendChild(confirmedBar);
+          barWrap.appendChild(stack);
+          bars.appendChild(barWrap);
+        });
+      } else {
+        const singleChild = activeChildren[0];
+        const childColor = singleChild ? getUserColor(singleChild) : null;
+        const totalValue = week.aggregate[totalKey];
+        const confirmedValue = week.aggregate[confirmedKey];
+        const totalHeight = (totalValue / maxValue) * 150;
+        const confirmedHeight = (confirmedValue / maxValue) * 150;
+        const barWrap = createElement("div", { className: "statistics-bar-wrap statistics-bar-wrap-single" });
+        barWrap.setAttribute(
+          "data-tooltip",
+          `${singleChild ? singleChild.name : ""} | ${formatCalendarWeek(week.weekStart)} | ${formatDayMonth(week.weekStart)} - ${formatDayMonth(week.weekEnd)} | ${t("stats.total")}: ${week.aggregate[totalKey]} | ${t("stats.done")}: ${week.aggregate[confirmedKey]}`
+        );
+        const stack = createElement("div", { className: "statistics-bar-stack" });
+        const totalBar = createElement("div", { className: "statistics-bar statistics-bar-total" });
+        totalBar.style.height = `${totalValue > 0 ? Math.max(2, totalHeight) : 0}px`;
+        if (childColor) {
+          totalBar.style.background = hexToRgba(childColor, 0.28);
+          totalBar.style.borderColor = hexToRgba(childColor, 0.55);
+        } else {
+          totalBar.style.background = hexToRgba("#2c3e50", 0.28);
+          totalBar.style.borderColor = hexToRgba("#2c3e50", 0.55);
+        }
+        const confirmedBar = createElement("div", { className: "statistics-bar statistics-bar-done-secondary" });
+        confirmedBar.style.height = `${confirmedValue > 0 ? Math.max(2, confirmedHeight) : 0}px`;
+        if (childColor) {
+          confirmedBar.style.background = hexToRgba(childColor, 0.9);
+          confirmedBar.style.borderColor = hexToRgba(childColor, 0.96);
+        } else {
+          confirmedBar.style.background = hexToRgba("#2c3e50", 0.9);
+          confirmedBar.style.borderColor = hexToRgba("#2c3e50", 0.96);
+        }
+        stack.appendChild(totalBar);
+        stack.appendChild(confirmedBar);
+        barWrap.appendChild(stack);
+        bars.appendChild(barWrap);
+      }
+
+      weekCol.appendChild(bars);
+      weekCol.appendChild(createElement("div", { className: "statistics-week-label", text: formatCalendarWeek(week.weekStart) }));
+      weekCol.appendChild(createElement("div", { className: "statistics-week-label secondary", text: formatDayMonth(week.weekStart) }));
+      chart.appendChild(weekCol);
+    });
+
+    chartShell.appendChild(axisWrap);
+    chartShell.appendChild(chart);
+    chartSection.appendChild(chartShell);
+    return chartSection;
+  }
+
+  panel.appendChild(createWeeklyBarChart({
+    title: t("stats.tasksChartTitle"),
+    yLabel: t("stats.total"),
+    valueKey: "totalTasks",
+    confirmedKey: "confirmedTasks",
+    totalKey: "totalTasks",
+  }));
+
+  panel.appendChild(createWeeklyBarChart({
+    title: t("stats.pointsChartTitle"),
+    yLabel: t("stats.pointsChartTitle"),
+    valueKey: "totalPoints",
+    confirmedKey: "confirmedPoints",
+    totalKey: "totalPoints",
+  }));
+
+  const bonusSection = createElement("section", { className: "statistics-section" });
+  bonusSection.appendChild(createElement("h3", { className: "statistics-section-title", text: t("stats.bonusTableTitle") }));
+  bonusSection.appendChild(createElement("div", {
+    className: "statistics-bonus-period",
+    text: `${t("stats.period")}: ${formatDayMonth(start)} - ${formatDayMonth(now)}`,
+  }));
+  const bonusTable = createElement("div", { className: "statistics-bonus-table" });
+  const bonusGridColumns = ["minmax(64px, 0.7fr)"];
+  activeChildren.forEach(() => {
+    bonusGridColumns.push("minmax(0, 0.9fr)", "minmax(0, 2.3fr)", "minmax(0, 0.8fr)");
+  });
+  bonusTable.style.setProperty("--statistics-bonus-columns", bonusGridColumns.join(" "));
+
+  const bonusHeader = createElement("div", { className: "statistics-bonus-row statistics-bonus-header" });
+  bonusHeader.appendChild(createElement("span", { text: t("stats.currentWeek") }));
+  activeChildren.forEach(() => {
+    bonusHeader.appendChild(createElement("span", { text: t("stats.child") }));
+    bonusHeader.appendChild(createElement("span", { text: t("stats.achievedBonus") }));
+    bonusHeader.appendChild(createElement("span", { text: t("stats.redeemedBonus") }));
+  });
+  bonusTable.appendChild(bonusHeader);
+
+  weekData.forEach((week) => {
+    const row = createElement("div", { className: "statistics-bonus-row" });
+    row.appendChild(createElement("span", { className: "statistics-bonus-kw", text: formatCalendarWeek(week.weekStart) }));
 
     activeChildren.forEach((child) => {
-      const childStats = week.perChild[child.id];
-      const totalHeight = (childStats.total / maxTotal) * 150;
-      const doneHeight = (childStats.done / maxTotal) * 150;
+      const slot = week.perChild[child.id];
+      if (!slot) return;
+      const childColor = getUserColor(child);
+      const achievedText = slot.bonusesAchieved.length > 0
+        ? slot.bonusesAchieved.map((bonus) => `${bonus.label} (${bonus.pointsRequired})`).join(", ")
+        : t("stats.noBonusAchieved");
+      const childCell = createElement("span", { className: "statistics-bonus-cell statistics-bonus-cell-child", text: child.name });
+      childCell.style.background = hexToRgba(childColor, 0.2);
+      childCell.style.borderColor = hexToRgba(childColor, 0.45);
 
-      const barWrap = createElement("div", { className: "statistics-bar-wrap" });
-      barWrap.setAttribute("data-tooltip", `${child.name} | ${formatDayMonth(week.weekStart)} - ${formatDayMonth(weekEnd)} | ${t("stats.total")}: ${childStats.total}, ${t("stats.done")}: ${childStats.done}`);
+      const achievedCell = createElement("span", { className: "statistics-bonus-cell", text: achievedText });
+      achievedCell.style.background = hexToRgba(childColor, 0.13);
+      achievedCell.style.borderColor = hexToRgba(childColor, 0.38);
 
-      const stack = createElement("div", { className: "statistics-bar-stack" });
+      const redeemedCell = createElement("span", { className: "statistics-bonus-cell", text: String(slot.bonusesRedeemed) });
+      redeemedCell.style.background = hexToRgba(childColor, 0.2);
+      redeemedCell.style.borderColor = hexToRgba(childColor, 0.45);
 
-      const totalBar = createElement("div", { className: "statistics-bar statistics-bar-total" });
-      totalBar.style.height = `${childStats.total > 0 ? Math.max(2, totalHeight) : 0}px`;
-      totalBar.style.background = hexToRgba(getUserColor(child), 0.28);
-      totalBar.style.borderColor = hexToRgba(getUserColor(child), 0.55);
-
-      stack.appendChild(totalBar);
-
-      const doneBar = createElement("div", { className: "statistics-bar statistics-bar-done-secondary" });
-      doneBar.style.height = `${childStats.done > 0 ? Math.max(2, doneHeight) : 0}px`;
-      doneBar.style.background = hexToRgba(getUserColor(child), 0.9);
-      doneBar.style.borderColor = hexToRgba(getUserColor(child), 0.96);
-      stack.appendChild(doneBar);
-
-      barWrap.appendChild(stack);
-      bars.appendChild(barWrap);
+      row.appendChild(childCell);
+      row.appendChild(achievedCell);
+      row.appendChild(redeemedCell);
     });
-
-    weekCol.appendChild(bars);
-    weekCol.appendChild(createElement("div", { className: "statistics-week-label", text: formatDayMonth(week.weekStart) }));
-    weekCol.appendChild(createElement("div", { className: "statistics-week-label secondary", text: formatDayMonth(weekEnd) }));
-    chart.appendChild(weekCol);
+    bonusTable.appendChild(row);
   });
+  bonusSection.appendChild(bonusTable);
+  panel.appendChild(bonusSection);
 
-  chartShell.appendChild(yAxis);
-  chartShell.appendChild(chart);
-  panel.appendChild(chartShell);
   container.appendChild(panel);
 }
 
@@ -3447,10 +5188,13 @@ function scheduleMenuHide() {
 
 const appState = {
   locale: storage.locale || DEFAULT_LOCALE,
+  buildVersion: "0.0000.0000",
   currentTab: "dashboard",
   statisticsRange: "3m",
   statisticsChildId: "all",
   calendarDate: new Date().toISOString(),
+  calendarScrollMinutes: null,
+  overviewCollapsed: {},
   taskSort: "due",
   menuOpen: false,
   currentUser: null,
@@ -3463,6 +5207,11 @@ const appState = {
 };
 
 async function bootstrapApp() {
+  const appMeta = await readAppMeta();
+  if (appMeta && typeof appMeta.buildVersion === "string" && appMeta.buildVersion) {
+    appState.buildVersion = appMeta.buildVersion;
+  }
+
   const remoteState = await readStorageFromDatabase();
   if (remoteState && remoteState.data) {
     storage = applyUserDefaults(remoteState.data);
